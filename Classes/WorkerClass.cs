@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,14 +18,23 @@ namespace ST10249266_PROG_POE.Classes
             Console.WriteLine("Hi! Welcome to this recipe builder" +
                 "\nPlease Enter the number of different ingridients you want to have");
 
+            //try catch that handles input validation
             try
             {
                 //this is the number of ingredients that the user wants to have, converts the input to an integer
                 noIngredients = Convert.ToInt32(Console.ReadLine());
+
+                //if the number of ingredients is less than 1, it will ask the user to enter a number above zero
+                if (noIngredients < 1)
+                {
+                    Console.WriteLine("Please enter a number above zero");
+                    startHere();
+                }
             }
-            catch (Exception e)
+            catch (FormatException)
             {
                 Console.WriteLine("Please enter a valid number");
+                startHere();
             }
         }
     }
