@@ -12,8 +12,7 @@ namespace ST10249266_PROG_POE.Classes
         // this is the method that will run all of the code and is called in the main method
         public void startHere()
         {
-            //calls the method to create the first recipe
-            createRecipe();
+            //calls method that contains the menu
             menuOptions();
         }
 
@@ -21,6 +20,7 @@ namespace ST10249266_PROG_POE.Classes
         //method that houses the switch statement for the menu
         private void menuOptions()
         {
+            Console.WriteLine("");
             Console.WriteLine("Please choose an option:");
             Console.WriteLine("1) Create a recipe");
             Console.WriteLine("2) Print a recipe");
@@ -53,6 +53,7 @@ namespace ST10249266_PROG_POE.Classes
 
                 default:
                     Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
+                    startHere();
                     break;
             }
         }
@@ -150,6 +151,7 @@ namespace ST10249266_PROG_POE.Classes
                 //adds the step to the steps list
                 recipe.Steps1.Add(step);
             }
+            menuOptions();
         }
 
         private void clearRecipe()
@@ -190,17 +192,25 @@ namespace ST10249266_PROG_POE.Classes
 
         private void printRecipe()
         {
-            Console.WriteLine("------------------------------------------------------");
-            foreach (Ingredients ingredient in recipe.IngredientList)
+            if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
             {
-                int j = 1;
-                Console.WriteLine($"{j}{ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ");
-                j = j++;
+                Console.WriteLine("------------------------------------------------------");
+                foreach (Ingredients ingredient in recipe.IngredientList)
+                {
+                    int j = 1;
+                    Console.WriteLine($"{j}{ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ");
+                    j = j++;
+                }
+                Console.WriteLine("------------------------------------------------------");
+                for (int k = 0; k < noSteps; k++)
+                {
+                    Console.WriteLine(k + recipe.Steps1[k]);
+                }
             }
-            Console.WriteLine("------------------------------------------------------");
-            for (int k = 0; k < noSteps; k++)
+            else
             {
-                Console.WriteLine(k + recipe.Steps1[k]);
+                Console.WriteLine("There is currently no recipe saved");
+                menuOptions();
             }
         }
     }
