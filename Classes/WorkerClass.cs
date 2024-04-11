@@ -29,6 +29,7 @@ namespace ST10249266_PROG_POE.Classes
                 Console.WriteLine("2) Print a recipe");
                 Console.WriteLine("3) Clear a recipe");
                 Console.WriteLine("4) Scale a recipe");
+                Console.WriteLine("5) Exit");
 
                 int option = Convert.ToInt32(Console.ReadLine());
 
@@ -52,6 +53,9 @@ namespace ST10249266_PROG_POE.Classes
                     case 4:
                         // Code to scale a recipe
 
+                        break;
+
+                    case 5:
                         break;
 
                     default:
@@ -165,37 +169,45 @@ namespace ST10249266_PROG_POE.Classes
 
         private void clearRecipe()
         {
-            Console.WriteLine("doing this will delete the previous recipe, are you sure? (y/n):");
-
-            //accepts user input and capitalises it (gitgub Copilot helped me find .ToUpper())
-            string answer = Console.ReadLine().ToUpper();
-            switch (answer)
+            if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
             {
-                case "Y":
-                    //clears the ingredients array
-                    recipe.IngredientList.Clear();
+                Console.WriteLine("doing this will delete the previous recipe, are you sure? (y/n):");
 
-                    //clears the steps array
-                    recipe.Steps1.Clear();
+                //accepts user input and capitalises it (gitgub Copilot helped me find .ToUpper())
+                string answer = Console.ReadLine().ToUpper();
+                switch (answer)
+                {
+                    case "Y":
+                        //clears the ingredients array
+                        recipe.IngredientList.Clear();
 
-                    //resets variables to 0
-                    noIngredients = 0;
-                    noSteps = 0;
+                        //clears the steps array
+                        recipe.Steps1.Clear();
 
-                    Console.WriteLine("The recipe han now been deleted!");
+                        //resets variables to 0
+                        noIngredients = 0;
+                        noSteps = 0;
 
-                    menuOptions();
-                    break;
+                        Console.WriteLine("The recipe han now been deleted!");
 
-                case "N":
-                    //takes user back to menu
-                    menuOptions();
-                    break;
+                        menuOptions();
+                        break;
 
-                default:
-                    Console.WriteLine("Invalid option, please choose a y or n:");
-                    clearRecipe();
-                    break;
+                    case "N":
+                        //takes user back to menu
+                        menuOptions();
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid option, please choose a y or n:");
+                        clearRecipe();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("there is no recipe to clear");
+                menuOptions();
             }
         }
 
