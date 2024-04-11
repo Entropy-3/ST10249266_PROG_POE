@@ -5,6 +5,7 @@ namespace ST10249266_PROG_POE.Classes
     internal class WorkerClass
     {
         private int noIngredients;
+        private int noSteps;
         private RecipeClass recipe = new RecipeClass();
 
         //----------------------------------------\\
@@ -70,6 +71,28 @@ namespace ST10249266_PROG_POE.Classes
 
                 //adds ingredient to the recipe array list
                 recipe.IngredientList.Add(ingredient);
+            }
+
+            bool validinput = false;
+            while (!validinput)
+            {
+                Console.WriteLine("Please enter the number of steps you want to have in your recipe");
+                try
+                {
+                    noSteps = Convert.ToInt32(Console.ReadLine());
+                    validinput = true;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a valid number");
+                }
+            }
+
+            for (int i = 0; i <= noSteps; i++)
+            {
+                Console.WriteLine("Please enter the step");
+                string step = Console.ReadLine();
+                recipe.Steps1.Add(step);
             }
         }
     }
