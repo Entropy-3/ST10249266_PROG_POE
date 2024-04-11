@@ -37,20 +37,38 @@ namespace ST10249266_PROG_POE.Classes
             //for loop that will deal with getting ingridient information from the user
             for (int i = 0; i <= noIngredients; i++)
             {
+                //creates an object of the Ingredients class
                 Ingredients ingredient = new Ingredients();
 
+                //Asks for user input for ingredient name
                 Console.WriteLine("Please enter the name of the ingredient");
                 string ingredientName = Console.ReadLine();
                 ingredient.IngredientName = ingredientName;
 
-                Console.WriteLine("Please enter the quantity of the ingredient");
-                float ingredientQuantity = Convert.ToSingle(Console.ReadLine());
-                ingredient.IngredientQuantity = ingredientQuantity;
+                //asks for user input for ingredient quantity
+                bool validInput = false;
+                //while loop that will keep asking the user for a valid number until they enter one
+                while (!validInput)
+                {
+                    Console.WriteLine("Please enter the quantity of the ingredient");
+                    try
+                    {
+                        float ingredientQuantity = Convert.ToSingle(Console.ReadLine());
+                        ingredient.IngredientQuantity = ingredientQuantity;
+                        validInput = true;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Please enter a valid number");
+                    }
+                }
 
+                //asks for user input for ingredient measurement
                 Console.WriteLine("Please enter the measurement of the ingredient");
                 string ingredientMeasurement = Console.ReadLine();
                 ingredient.IngredientMeasurement = ingredientMeasurement;
 
+                //adds ingredient to the recipe array list
                 recipe.IngredientList.Add(ingredient);
             }
         }
