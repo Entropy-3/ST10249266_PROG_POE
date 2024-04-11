@@ -12,6 +12,14 @@ namespace ST10249266_PROG_POE.Classes
         // this is the method that will run all of the code and is called in the main method
         public void startHere()
         {
+            //calls the method to create the first recipe
+            createRecipe();
+        }
+
+        //----------------------------------------\\
+        //method to create a recipe
+        private void createRecipe()
+        {
             Console.WriteLine("Hi! Welcome to this recipe builder" +
                 "\nPlease Enter the number of different ingridients you want to have");
 
@@ -74,12 +82,16 @@ namespace ST10249266_PROG_POE.Classes
             }
 
             bool validinput = false;
+            //while loop that will keep asking the user for a valid number until they enter one
             while (!validinput)
             {
                 Console.WriteLine("Please enter the number of steps you want to have in your recipe");
+                //try catch that handles input validation
                 try
                 {
+                    //converts the input to an integer
                     noSteps = Convert.ToInt32(Console.ReadLine());
+
                     validinput = true;
                 }
                 catch (FormatException)
@@ -88,11 +100,51 @@ namespace ST10249266_PROG_POE.Classes
                 }
             }
 
+            //for loop that will deal with getting the steps from the user
             for (int i = 0; i <= noSteps; i++)
             {
                 Console.WriteLine("Please enter the step");
                 string step = Console.ReadLine();
+
+                //adds the step to the steps list
                 recipe.Steps1.Add(step);
+            }
+        }
+
+        private void menuOptions()
+        {
+            Console.WriteLine("Please choose an option:");
+            Console.WriteLine("1) Create a recipe");
+            Console.WriteLine("2) Print a recipe");
+            Console.WriteLine("3) Clear a recipe");
+            Console.WriteLine("4) Scale a recipe");
+
+            int option = Convert.ToInt32(Console.ReadLine());
+
+            switch (option)
+            {
+                case 1:
+                    createRecipe();
+                    break;
+
+                case 2:
+                    // Code to print a recipe
+
+                    break;
+
+                case 3:
+                    // Code to clear a recipe
+
+                    break;
+
+                case 4:
+                    // Code to scale a recipe
+
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
+                    break;
             }
         }
     }
