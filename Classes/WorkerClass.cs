@@ -17,6 +17,46 @@ namespace ST10249266_PROG_POE.Classes
         }
 
         //----------------------------------------\\
+        //method that houses the switch statement for the menu
+        private void menuOptions()
+        {
+            Console.WriteLine("Please choose an option:");
+            Console.WriteLine("1) Create a recipe");
+            Console.WriteLine("2) Print a recipe");
+            Console.WriteLine("3) Clear a recipe");
+            Console.WriteLine("4) Scale a recipe");
+
+            int option = Convert.ToInt32(Console.ReadLine());
+
+            switch (option)
+            {
+                case 1:
+                    createRecipe();
+                    break;
+
+                case 2:
+                    // Code to print a recipe
+
+                    break;
+
+                case 3:
+                    //method that contains the code to clear a recipe
+                    clearRecipe();
+
+                    break;
+
+                case 4:
+                    // Code to scale a recipe
+
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
+                    break;
+            }
+        }
+
+        //----------------------------------------\\
         //method to create a recipe
         private void createRecipe()
         {
@@ -111,41 +151,10 @@ namespace ST10249266_PROG_POE.Classes
             }
         }
 
-        private void menuOptions()
+        private void clearRecipe()
         {
-            Console.WriteLine("Please choose an option:");
-            Console.WriteLine("1) Create a recipe");
-            Console.WriteLine("2) Print a recipe");
-            Console.WriteLine("3) Clear a recipe");
-            Console.WriteLine("4) Scale a recipe");
-
-            int option = Convert.ToInt32(Console.ReadLine());
-
-            switch (option)
-            {
-                case 1:
-                    createRecipe();
-                    break;
-
-                case 2:
-                    // Code to print a recipe
-
-                    break;
-
-                case 3:
-                    // Code to clear a recipe
-
-                    break;
-
-                case 4:
-                    // Code to scale a recipe
-
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
-                    break;
-            }
+            recipe.IngredientList.Clear();
+            recipe.Steps1.Clear();
         }
     }
 }
