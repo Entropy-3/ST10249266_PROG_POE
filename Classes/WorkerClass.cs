@@ -20,6 +20,7 @@ namespace ST10249266_PROG_POE.Classes
         //method that houses the switch statement for the menu
         private void menuOptions()
         {
+            //try catch to ensure that a null value does not break the code
             try
             {
                 Console.WriteLine("");
@@ -71,7 +72,7 @@ namespace ST10249266_PROG_POE.Classes
         private void createRecipe()
         {
             Console.WriteLine("Hi! Welcome to this recipe builder" +
-                "\nPlease Enter the number of different ingridients you want to have");
+                "\nPlease Enter the number of different ingridients you want to have:");
 
             //----------------------------------------\\
             //try catch that handles input validation
@@ -100,7 +101,7 @@ namespace ST10249266_PROG_POE.Classes
                 Ingredients ingredient = new Ingredients();
 
                 //Asks for user input for ingredient name
-                Console.WriteLine("Please enter the name of the ingredient");
+                Console.WriteLine("Please enter the name of the ingredient:");
                 string ingredientName = Console.ReadLine();
                 ingredient.IngredientName = ingredientName;
 
@@ -109,7 +110,7 @@ namespace ST10249266_PROG_POE.Classes
                 //while loop that will keep asking the user for a valid number until they enter one
                 while (!validInput)
                 {
-                    Console.WriteLine("Please enter the quantity of the ingredient");
+                    Console.WriteLine("Please enter the quantity of the ingredient (e.g. 1):");
                     try
                     {
                         float ingredientQuantity = Convert.ToSingle(Console.ReadLine());
@@ -123,7 +124,7 @@ namespace ST10249266_PROG_POE.Classes
                 }
 
                 //asks for user input for ingredient measurement
-                Console.WriteLine("Please enter the measurement of the ingredient");
+                Console.WriteLine("Please enter the measurement of the ingredient (e.g. teaspoon):");
                 string ingredientMeasurement = Console.ReadLine();
                 ingredient.IngredientMeasurement = ingredientMeasurement;
 
@@ -135,7 +136,7 @@ namespace ST10249266_PROG_POE.Classes
             //while loop that will keep asking the user for a valid number until they enter one
             while (!validinput)
             {
-                Console.WriteLine("Please enter the number of steps you want to have in your recipe");
+                Console.WriteLine("Please enter the number of steps you want to have in your recipe:s");
                 //try catch that handles input validation
                 try
                 {
@@ -153,7 +154,7 @@ namespace ST10249266_PROG_POE.Classes
             //for loop that will deal with getting the steps from the user
             for (int i = 0; i < noSteps; i++)
             {
-                Console.WriteLine("Please enter the step");
+                Console.WriteLine("Please enter the step:");
                 string step = Console.ReadLine();
 
                 //adds the step to the steps list
@@ -164,9 +165,9 @@ namespace ST10249266_PROG_POE.Classes
 
         private void clearRecipe()
         {
-            Console.WriteLine("doing this will delete the previous recipe, are you sure? (y/n)");
+            Console.WriteLine("doing this will delete the previous recipe, are you sure? (y/n):");
 
-            //accepts user input and capitalises it (ai helped me find .ToUpper())
+            //accepts user input and capitalises it (gitgub Copilot helped me find .ToUpper())
             string answer = Console.ReadLine().ToUpper();
             switch (answer)
             {
@@ -192,17 +193,19 @@ namespace ST10249266_PROG_POE.Classes
                     break;
 
                 default:
-                    Console.WriteLine("Invalid option, please choose a y or n");
+                    Console.WriteLine("Invalid option, please choose a y or n:");
                     clearRecipe();
                     break;
             }
         }
 
         private void printRecipe()
-        {
+        {   //if statement that ensures that nothing is pringted when there is no recipe saved
             if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
             {
                 Console.WriteLine("------------------------------------------------------");
+
+                //foreach statement that prints out the ingredients(github copilot helped me with the foreach statemment)
                 foreach (Ingredients ingredient in recipe.IngredientList)
                 {
                     int j = 1;
@@ -210,11 +213,15 @@ namespace ST10249266_PROG_POE.Classes
                     j = j++;
                 }
                 Console.WriteLine("------------------------------------------------------");
+
+                //for statement that prints out the steps for the recipe
                 for (int k = 0; k < noSteps; k++)
                 {
                     Console.WriteLine(k + recipe.Steps1[k]);
                 }
             }
+
+            //returns user to menu if no recipe is saved
             else
             {
                 Console.WriteLine("There is currently no recipe saved");
