@@ -14,7 +14,7 @@
 
         //----------------------------------------\\
         //defualt constructor
-        private Ingredients()
+        public Ingredients()
         {
         }
 

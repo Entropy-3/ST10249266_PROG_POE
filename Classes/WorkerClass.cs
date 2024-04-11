@@ -5,6 +5,7 @@ namespace ST10249266_PROG_POE.Classes
     internal class WorkerClass
     {
         private int noIngredients;
+        private RecipeClass recipe = new RecipeClass();
 
         //----------------------------------------\\
         // this is the method that will run all of the code and is called in the main method
@@ -33,8 +34,24 @@ namespace ST10249266_PROG_POE.Classes
                 startHere();
             }
 
-            for (int i = 0; i < noIngredients; i++)
+            //for loop that will deal with getting ingridient information from the user
+            for (int i = 0; i <= noIngredients; i++)
             {
+                Ingredients ingredient = new Ingredients();
+
+                Console.WriteLine("Please enter the name of the ingredient");
+                string ingredientName = Console.ReadLine();
+                ingredient.IngredientName = ingredientName;
+
+                Console.WriteLine("Please enter the quantity of the ingredient");
+                float ingredientQuantity = Convert.ToSingle(Console.ReadLine());
+                ingredient.IngredientQuantity = ingredientQuantity;
+
+                Console.WriteLine("Please enter the measurement of the ingredient");
+                string ingredientMeasurement = Console.ReadLine();
+                ingredient.IngredientMeasurement = ingredientMeasurement;
+
+                recipe.IngredientList.Add(ingredient);
             }
         }
     }
