@@ -20,41 +20,49 @@ namespace ST10249266_PROG_POE.Classes
         //method that houses the switch statement for the menu
         private void menuOptions()
         {
-            Console.WriteLine("");
-            Console.WriteLine("Please choose an option:");
-            Console.WriteLine("1) Create a recipe");
-            Console.WriteLine("2) Print a recipe");
-            Console.WriteLine("3) Clear a recipe");
-            Console.WriteLine("4) Scale a recipe");
-
-            int option = Convert.ToInt32(Console.ReadLine());
-
-            switch (option)
+            try
             {
-                case 1:
-                    createRecipe();
-                    break;
+                Console.WriteLine("");
+                Console.WriteLine("Please choose an option:");
+                Console.WriteLine("1) Create a recipe");
+                Console.WriteLine("2) Print a recipe");
+                Console.WriteLine("3) Clear a recipe");
+                Console.WriteLine("4) Scale a recipe");
 
-                case 2:
-                    // Code to print a recipe
-                    printRecipe();
-                    break;
+                int option = Convert.ToInt32(Console.ReadLine());
 
-                case 3:
-                    //method that contains the code to clear a recipe
-                    clearRecipe();
+                switch (option)
+                {
+                    case 1:
+                        createRecipe();
+                        break;
 
-                    break;
+                    case 2:
+                        // Code to print a recipe
+                        printRecipe();
+                        break;
 
-                case 4:
-                    // Code to scale a recipe
+                    case 3:
+                        //method that contains the code to clear a recipe
+                        clearRecipe();
 
-                    break;
+                        break;
 
-                default:
-                    Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
-                    startHere();
-                    break;
+                    case 4:
+                        // Code to scale a recipe
+
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
+                        startHere();
+                        break;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
+                startHere();
             }
         }
 
