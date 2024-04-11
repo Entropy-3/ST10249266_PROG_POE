@@ -14,6 +14,7 @@ namespace ST10249266_PROG_POE.Classes
         {
             //calls the method to create the first recipe
             createRecipe();
+            menuOptions();
         }
 
         //----------------------------------------\\
@@ -36,7 +37,7 @@ namespace ST10249266_PROG_POE.Classes
 
                 case 2:
                     // Code to print a recipe
-
+                    printRecipe();
                     break;
 
                 case 3:
@@ -84,7 +85,7 @@ namespace ST10249266_PROG_POE.Classes
             }
 
             //for loop that will deal with getting ingridient information from the user
-            for (int i = 0; i <= noIngredients; i++)
+            for (int i = 0; i < noIngredients; i++)
             {
                 //creates an object of the Ingredients class
                 Ingredients ingredient = new Ingredients();
@@ -141,7 +142,7 @@ namespace ST10249266_PROG_POE.Classes
             }
 
             //for loop that will deal with getting the steps from the user
-            for (int i = 0; i <= noSteps; i++)
+            for (int i = 0; i < noSteps; i++)
             {
                 Console.WriteLine("Please enter the step");
                 string step = Console.ReadLine();
@@ -153,8 +154,54 @@ namespace ST10249266_PROG_POE.Classes
 
         private void clearRecipe()
         {
-            recipe.IngredientList.Clear();
-            recipe.Steps1.Clear();
+            Console.WriteLine("doing this will delete the previous recipe, are you sure? (y/n)");
+
+            //accepts user input and capitalises it (ai helped me find .ToUpper())
+            string answer = Console.ReadLine().ToUpper();
+            switch (answer)
+            {
+                case "Y":
+                    //clears the ingredients array
+                    recipe.IngredientList.Clear();
+
+                    //clears the steps array
+                    recipe.Steps1.Clear();
+
+                    //resets variables to 0
+                    noIngredients = 0;
+                    noSteps = 0;
+
+                    Console.WriteLine("The recipe han now been deleted!");
+
+                    menuOptions();
+                    break;
+
+                case "N":
+                    //takes user back to menu
+                    menuOptions();
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid option, please choose a y or n");
+                    clearRecipe();
+                    break;
+            }
+        }
+
+        private void printRecipe()
+        {
+            Console.WriteLine("------------------------------------------------------");
+            foreach (Ingredients ingredient in recipe.IngredientList)
+            {
+                int j = 1;
+                Console.WriteLine($"{j}{ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ");
+                j = j++;
+            }
+            Console.WriteLine("------------------------------------------------------");
+            for (int k = 0; k < noSteps; k++)
+            {
+                Console.WriteLine(k + recipe.Steps1[k]);
+            }
         }
     }
 }
