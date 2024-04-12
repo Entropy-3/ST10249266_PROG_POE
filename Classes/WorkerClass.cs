@@ -153,7 +153,7 @@ namespace ST10249266_PROG_POE.Classes
             //while loop that will keep asking the user for a valid number until they enter one(github copilot assisted with while loop)
             while (!validinput)
             {
-                Console.WriteLine("Please enter the number of steps you want to have in your recipe:s");
+                Console.WriteLine("Please enter the number of steps you want to have in your recipe:");
                 //try catch that handles input validation
                 try
                 {
@@ -234,8 +234,8 @@ namespace ST10249266_PROG_POE.Classes
         {   //if statement that ensures that nothing is pringted when there is no recipe saved
             if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
             {
-                Console.WriteLine("INGREDIENTS");
                 Console.WriteLine("------------------------------------------------------");
+                Console.WriteLine("INGREDIENTS:");
 
                 //foreach statement that prints out the ingredients(github copilot helped me with the foreach statemment)
                 foreach (Ingredients ingredient in recipe.IngredientList)
@@ -244,15 +244,19 @@ namespace ST10249266_PROG_POE.Classes
                     Console.WriteLine($"{j}{ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ");
                     j = j++;
                 }
-
-                Console.WriteLine("INSTRUCTIONS");
                 Console.WriteLine("------------------------------------------------------");
+
+                Console.WriteLine("INSTRUCTIONS:");
 
                 //for statement that prints out the steps for the recipe
                 for (int k = 0; k < noSteps; k++)
                 {
-                    Console.WriteLine(k + recipe.Steps1[k]);
+                    int no = 1;
+                    Console.WriteLine(no + ")" + recipe.Steps1[k]);
+                    no = no++;
                 }
+                Console.WriteLine("------------------------------------------------------");
+                menuOptions();
             }
 
             //returns user to menu if no recipe is saved
