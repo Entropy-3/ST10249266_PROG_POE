@@ -222,6 +222,7 @@ namespace ST10249266_PROG_POE.Classes
         {   //if statement that ensures that nothing is pringted when there is no recipe saved
             if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
             {
+                Console.WriteLine("INGREDIENTS");
                 Console.WriteLine("------------------------------------------------------");
 
                 //foreach statement that prints out the ingredients(github copilot helped me with the foreach statemment)
@@ -231,6 +232,8 @@ namespace ST10249266_PROG_POE.Classes
                     Console.WriteLine($"{j}{ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ");
                     j = j++;
                 }
+
+                Console.WriteLine("INSTRUCTIONS");
                 Console.WriteLine("------------------------------------------------------");
 
                 //for statement that prints out the steps for the recipe
@@ -258,6 +261,8 @@ namespace ST10249266_PROG_POE.Classes
                 Console.WriteLine("1) 0.5x");
                 Console.WriteLine("2) 2x");
                 Console.WriteLine("3) 3x");
+                Console.WriteLine("4) reset");
+                Console.WriteLine("5) back");
 
                 int choice = Convert.ToInt32(Console.ReadLine());
 
@@ -276,6 +281,33 @@ namespace ST10249266_PROG_POE.Classes
 
                         //case 3 scales the recipe to 3x
                         case 3:
+                            break;
+
+                        //case 4 resets the recipe to original values
+                        case 4:
+                            Console.WriteLine("are you sure you want to reset the recipe to its original values? (y/n)");
+                            string answer1 = Console.ReadLine().ToUpper();
+                            switch (answer1)
+                            {
+                                case "Y":
+
+                                    break;
+
+                                case "N":
+                                    //takes user back to menu
+                                    scaleRecipe();
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Invalid option, please choose a y or n:");
+                                    scaleRecipe();
+                                    break;
+                            }
+                            break;
+
+                        //case 5 takes user back to the menu
+                        case 5:
+                            menuOptions();
                             break;
 
                         //default case that prompts the user to enter a valid number
