@@ -52,7 +52,7 @@ namespace ST10249266_PROG_POE.Classes
 
                     case 4:
                         // Code to scale a recipe
-
+                        scaleRecipe();
                         break;
 
                     case 5:
@@ -118,8 +118,15 @@ namespace ST10249266_PROG_POE.Classes
                     try
                     {
                         float ingredientQuantity = Convert.ToSingle(Console.ReadLine());
-                        ingredient.IngredientQuantity = ingredientQuantity;
-                        validInput = true;
+                        if (ingredientQuantity > 0)
+                        {
+                            ingredient.IngredientQuantity = ingredientQuantity;
+                            validInput = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("please enter a number higher than 0.");
+                        }
                     }
                     catch (FormatException)
                     {
@@ -137,7 +144,7 @@ namespace ST10249266_PROG_POE.Classes
             }
 
             bool validinput = false;
-            //while loop that will keep asking the user for a valid number until they enter one
+            //while loop that will keep asking the user for a valid number until they enter one(github copilot assisted with while loop)
             while (!validinput)
             {
                 Console.WriteLine("Please enter the number of steps you want to have in your recipe:s");
@@ -234,6 +241,58 @@ namespace ST10249266_PROG_POE.Classes
             }
 
             //returns user to menu if no recipe is saved
+            else
+            {
+                Console.WriteLine("There is currently no recipe saved");
+                menuOptions();
+            }
+        }
+
+        private void scaleRecipe()
+        {
+            //if statement that ensures that there is a recipe saved
+            if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
+            {
+                //prompts user to enter the number of servings they would like to scale the recipe to
+                Console.WriteLine("Please enter the number of servings you would like to scale the recipe to:");
+                Console.WriteLine("1) 0.5x");
+                Console.WriteLine("2) 2x");
+                Console.WriteLine("3) 3x");
+
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+                //try catch that handles if a user inputs a null value
+                try
+                {
+                    switch (choice)
+                    {
+                        //case 1 scales the recipe to 0.5x
+                        case 1:
+                            break;
+
+                        //case 2 scales the recipe to 2x
+                        case 2:
+                            break;
+
+                        //case 3 scales the recipe to 3x
+                        case 3:
+                            break;
+
+                        //default case that prompts the user to enter a valid number
+                        default:
+                            Console.WriteLine("Invalid option, please choose a number between 1 and 3.");
+                            scaleRecipe();
+                            break;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid option, please choose a number between 1 and 3.");
+                    scaleRecipe();
+                }
+            }
+
+            //takes user back to the menu if there is no recipe saved
             else
             {
                 Console.WriteLine("There is currently no recipe saved");
