@@ -13,6 +13,8 @@ namespace ST10249266_PROG_POE
         {
             //creates an object of the WorkerClass and calls the startHere method
             WorkerClass worker = new WorkerClass();
+
+            //runs the startHere method
             worker.startHere();
         }
     }

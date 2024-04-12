@@ -35,26 +35,31 @@ namespace ST10249266_PROG_POE.Classes
 
                 switch (option)
                 {
+                    //case that contains the code to create a recipe
                     case 1:
                         createRecipe();
                         break;
 
+                    //case that contains the code to print a recipe
                     case 2:
                         // Code to print a recipe
                         printRecipe();
                         break;
 
+                    //case that contains the code to clear a recipe
                     case 3:
                         //method that contains the code to clear a recipe
                         clearRecipe();
 
                         break;
 
+                    //case that contains the code to scale a recipe
                     case 4:
                         // Code to scale a recipe
                         scaleRecipe();
                         break;
 
+                    //case that exits the program
                     case 5:
                         break;
 
@@ -115,6 +120,7 @@ namespace ST10249266_PROG_POE.Classes
                 while (!validInput)
                 {
                     Console.WriteLine("Please enter the quantity of the ingredient (e.g. 1):");
+                    //try catch that handles input validation
                     try
                     {
                         float ingredientQuantity = Convert.ToSingle(Console.ReadLine());
@@ -174,6 +180,8 @@ namespace ST10249266_PROG_POE.Classes
             menuOptions();
         }
 
+        //----------------------------------------\\
+        //method that contains the code to clear a recipe
         private void clearRecipe()
         {
             if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
@@ -184,6 +192,7 @@ namespace ST10249266_PROG_POE.Classes
                 string answer = Console.ReadLine().ToUpper();
                 switch (answer)
                 {
+                    //case that clears the recipe
                     case "Y":
                         //clears the ingredients array
                         recipe.IngredientList.Clear();
@@ -200,6 +209,7 @@ namespace ST10249266_PROG_POE.Classes
                         menuOptions();
                         break;
 
+                    //case that takes user back to menu
                     case "N":
                         //takes user back to menu
                         menuOptions();
@@ -218,6 +228,8 @@ namespace ST10249266_PROG_POE.Classes
             }
         }
 
+        //----------------------------------------\\
+        //method that contains the code to print a recipe
         private void printRecipe()
         {   //if statement that ensures that nothing is pringted when there is no recipe saved
             if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
@@ -251,6 +263,8 @@ namespace ST10249266_PROG_POE.Classes
             }
         }
 
+        //----------------------------------------\\
+        //method that contains the code to scale a recipe
         private void scaleRecipe()
         {
             //if statement that ensures that there is a recipe saved
@@ -333,3 +347,5 @@ namespace ST10249266_PROG_POE.Classes
         }
     }
 }
+
+//-------------------------------------EOF----------------------------------------\\
