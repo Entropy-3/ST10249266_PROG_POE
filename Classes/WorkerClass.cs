@@ -1,26 +1,24 @@
-﻿using System;
+﻿//Nathan Teixiera
+//ST10249266
+//Group 2
+using System;
 using System.Collections.Generic;
 
 namespace ST10249266_PROG_POE.Classes
 {
     internal class WorkerClass
     {
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //variables that will be used in the class
         private int noIngredients;
         private int noSteps;
         private RecipeClass recipe = new RecipeClass();
         private List<object> orignalList = new List<object>();
 
-        //----------------------------------------\\
-        // this is the method that will run all of the code and is called in the main method
-        public void startHere()
-        {
-            //calls method that contains the menu
-            menuOptions();
-        }
-
-        //----------------------------------------\\
+        
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that houses the switch statement for the menu
-        private void menuOptions()
+        public void menuOptions()
         {
             //try catch to ensure that a null value does not break the code
             try
@@ -67,25 +65,25 @@ namespace ST10249266_PROG_POE.Classes
 
                     default:
                         Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
-                        startHere();
+                        menuOptions();
                         break;
                 }
             }
             catch (FormatException)
             {
                 Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
-                startHere();
+                menuOptions();
             }
         }
 
-        //----------------------------------------\\
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method to create a recipe
         private void createRecipe()
         {
             Console.WriteLine("Hi! Welcome to this recipe builder" +
                 "\nPlease Enter the number of different ingridients you want to have:");
 
-            //----------------------------------------\\
+            //--------------------------------------------------------------------------------------------------------------------------------------------------\\
             //try catch that handles input validation
             try
             {
@@ -96,13 +94,13 @@ namespace ST10249266_PROG_POE.Classes
                 if (noIngredients < 1)
                 {
                     Console.WriteLine("Please enter a number above zero");
-                    startHere();
+                    menuOptions();
                 }
             }
             catch (FormatException)
             {
                 Console.WriteLine("Please enter a valid number");
-                startHere();
+                menuOptions();
             }
 
             //for loop that will deal with getting ingridient information from the user
@@ -182,7 +180,7 @@ namespace ST10249266_PROG_POE.Classes
             menuOptions();
         }
 
-        //----------------------------------------\\
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that contains the code to clear a recipe
         private void clearRecipe()
         {
@@ -230,7 +228,7 @@ namespace ST10249266_PROG_POE.Classes
             }
         }
 
-        //----------------------------------------\\
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that contains the code to print a recipe
         private void printRecipe()
         {   //if statement that ensures that nothing is pringted when there is no recipe saved
@@ -269,7 +267,7 @@ namespace ST10249266_PROG_POE.Classes
             }
         }
 
-        //----------------------------------------\\
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that contains the code to scale a recipe
         private void scaleRecipe()
         {
@@ -388,7 +386,8 @@ namespace ST10249266_PROG_POE.Classes
                 menuOptions();
             }
         }
-
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //method that saves the original recipe
         private void saveOriginal()
         {
             //foreach statement that creates a copy of the ingredient list

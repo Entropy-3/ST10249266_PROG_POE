@@ -1,4 +1,7 @@
-﻿namespace ST10249266_PROG_POE.Classes
+﻿//Nathan Teixiera
+//ST10249266
+//Group 2
+namespace ST10249266_PROG_POE.Classes
 {
     internal class Ingredients
     {
@@ -12,13 +15,13 @@
         public float IngredientQuantity { get => ingredientQuantity; set => ingredientQuantity = value; }
         public string IngredientMeasurement { get => ingredientMeasurement; set => ingredientMeasurement = value; }
 
-        //----------------------------------------\\
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //defualt constructor
         public Ingredients()
         {
         }
 
-        //----------------------------------------\\
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //constructor that takes in the ingredient name, quantity and measurement
         public Ingredients(string ingredientName, float ingredientQuantity, string ingredientMeasurement)
         {
@@ -28,3 +31,4 @@
         }
     }
 }
+//-------------------------------------EOF----------------------------------------\\

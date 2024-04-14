@@ -1,4 +1,12 @@
-﻿using ST10249266_PROG_POE.Classes;
+﻿//Nathan Teixiera
+//ST10249266
+//Group 2
+
+//references:
+//GithubCopilot
+//https://www.youtube.com/watch?v=WhACXlObR8s
+//https://www.youtube.com/watch?v=aLhAmimoQj8
+using ST10249266_PROG_POE.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +23,8 @@ namespace ST10249266_PROG_POE
             WorkerClass worker = new WorkerClass();
 
             //runs the startHere method
-            worker.startHere();
+            worker.menuOptions();
         }
     }
 }
+//-------------------------------------EOF----------------------------------------\\

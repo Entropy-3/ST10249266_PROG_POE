@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Nathan Teixiera
+//ST10249266
+//Group 2
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +17,7 @@ namespace ST10249266_PROG_POE.Classes
         //getter and setter for the ingredient list
         public List<object> IngredientList { get => ingredientList; set => ingredientList = value; }
 
-        //----------------------------------------\\
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //list that will hold the steps for the recipe
         private List<string> Steps = new List<string>();
 
@@ -22,3 +25,4 @@ namespace ST10249266_PROG_POE.Classes
         public List<string> Steps1 { get => Steps; set => Steps = value; }
     }
 }
+//-------------------------------------EOF----------------------------------------\\
