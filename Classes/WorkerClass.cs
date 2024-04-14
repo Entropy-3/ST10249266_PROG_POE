@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ST10249266_PROG_POE.Classes
 {
@@ -7,6 +8,7 @@ namespace ST10249266_PROG_POE.Classes
         private int noIngredients;
         private int noSteps;
         private RecipeClass recipe = new RecipeClass();
+        private List<object> orignalList = new List<object>();
 
         //----------------------------------------\\
         // this is the method that will run all of the code and is called in the main method
@@ -241,7 +243,7 @@ namespace ST10249266_PROG_POE.Classes
                 foreach (Ingredients ingredient in recipe.IngredientList)
                 {
                     int j = 1;
-                    Console.WriteLine($"{j}{ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ");
+                    Console.WriteLine($"{j}){ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ");
                     j = j++;
                 }
                 Console.WriteLine("------------------------------------------------------");
@@ -291,14 +293,34 @@ namespace ST10249266_PROG_POE.Classes
                     {
                         //case 1 scales the recipe to 0.5x
                         case 1:
+                            foreach (Ingredients ingredient in recipe.IngredientList)
+                            {
+                                orignalList.Add(ingredient);
+                            }
+
+                            foreach (Ingredients ingredient in recipe.IngredientList)
+                            {
+                                ingredient.IngredientQuantity = ingredient.IngredientQuantity / 2;
+                            }
+                            printRecipe();
                             break;
 
                         //case 2 scales the recipe to 2x
                         case 2:
+                            foreach (Ingredients ingredient in recipe.IngredientList)
+                            {
+                                ingredient.IngredientQuantity = ingredient.IngredientQuantity * 2;
+                            }
+                            printRecipe();
                             break;
 
                         //case 3 scales the recipe to 3x
                         case 3:
+                            foreach (Ingredients ingredient in recipe.IngredientList)
+                            {
+                                ingredient.IngredientQuantity = ingredient.IngredientQuantity * 3;
+                            }
+                            printRecipe();
                             break;
 
                         //case 4 resets the recipe to original values
@@ -308,7 +330,14 @@ namespace ST10249266_PROG_POE.Classes
                             switch (answer1)
                             {
                                 case "Y":
-
+                                    int no = 0;
+                                    foreach (Ingredients ingredient in recipe.IngredientList)
+                                    {
+                                        Ingredients originalIngredient = (Ingredients)orignalList[no];
+                                        ingredient.IngredientQuantity = originalIngredient.IngredientQuantity;
+                                        no++;
+                                    }
+                                    printRecipe();
                                     break;
 
                                 case "N":
