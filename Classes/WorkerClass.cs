@@ -293,11 +293,8 @@ namespace ST10249266_PROG_POE.Classes
                     {
                         //case 1 scales the recipe to 0.5x
                         case 1:
-                            foreach (Ingredients ingredient in recipe.IngredientList)
-                            {
-                                orignalList.Add(ingredient);
-                            }
-
+                            saveOriginal();
+                            //foreach statement that scales the recipe to 0.5x
                             foreach (Ingredients ingredient in recipe.IngredientList)
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity / 2;
@@ -307,6 +304,8 @@ namespace ST10249266_PROG_POE.Classes
 
                         //case 2 scales the recipe to 2x
                         case 2:
+                            saveOriginal();
+                            //foreach statement that scales the recipe to 2x
                             foreach (Ingredients ingredient in recipe.IngredientList)
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity * 2;
@@ -316,6 +315,8 @@ namespace ST10249266_PROG_POE.Classes
 
                         //case 3 scales the recipe to 3x
                         case 3:
+                            saveOriginal();
+                            //foreach statement that scales the recipe to 3x
                             foreach (Ingredients ingredient in recipe.IngredientList)
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity * 3;
@@ -325,30 +326,39 @@ namespace ST10249266_PROG_POE.Classes
 
                         //case 4 resets the recipe to original values
                         case 4:
-                            Console.WriteLine("are you sure you want to reset the recipe to its original values? (y/n)");
-                            string answer1 = Console.ReadLine().ToUpper();
-                            switch (answer1)
+                            if (orignalList.Count == 0)
                             {
-                                case "Y":
-                                    int no = 0;
-                                    foreach (Ingredients ingredient in recipe.IngredientList)
-                                    {
-                                        Ingredients originalIngredient = (Ingredients)orignalList[no];
-                                        ingredient.IngredientQuantity = originalIngredient.IngredientQuantity;
-                                        no++;
-                                    }
-                                    printRecipe();
-                                    break;
+                                Console.WriteLine("The recipe is already at its original values");
+                                scaleRecipe();
+                            }
+                            else
+                            {
+                                Console.WriteLine("are you sure you want to reset the recipe to its original values? (y/n)");
+                                string answer1 = Console.ReadLine().ToUpper();
+                                switch (answer1)
+                                {
+                                    case "Y":
+                                        int no = 0;
+                                        //foreach statement that overrides the scaled recipe with the original values
+                                        foreach (Ingredients ingredient in recipe.IngredientList)
+                                        {
+                                            Ingredients originalIngredient = (Ingredients)orignalList[no];
+                                            ingredient.IngredientQuantity = originalIngredient.IngredientQuantity;
+                                            no++;
+                                        }
+                                        printRecipe();
+                                        break;
 
-                                case "N":
-                                    //takes user back to menu
-                                    scaleRecipe();
-                                    break;
+                                    case "N":
+                                        //takes user back to menu
+                                        scaleRecipe();
+                                        break;
 
-                                default:
-                                    Console.WriteLine("Invalid option, please choose a y or n:");
-                                    scaleRecipe();
-                                    break;
+                                    default:
+                                        Console.WriteLine("Invalid option, please choose a y or n:");
+                                        scaleRecipe();
+                                        break;
+                                }
                             }
                             break;
 
@@ -376,6 +386,21 @@ namespace ST10249266_PROG_POE.Classes
             {
                 Console.WriteLine("There is currently no recipe saved");
                 menuOptions();
+            }
+        }
+
+        private void saveOriginal()
+        {
+            //foreach statement that creates a copy of the ingredient list
+            foreach (Ingredients ingredient in recipe.IngredientList)
+            {
+                //creates a local instance of ingredients that wont get overriden when scaling the recipe
+                //github copilot helped me with the local instance of ingredients
+                Ingredients copy = new Ingredients
+                {
+                    IngredientQuantity = ingredient.IngredientQuantity,
+                };
+                orignalList.Add(copy);
             }
         }
     }
