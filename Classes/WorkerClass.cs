@@ -11,11 +11,11 @@ namespace ST10249266_PROG_POE.Classes
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //variables that will be used in the class
         private int noIngredients;
+
         private int noSteps;
         private RecipeClass recipe = new RecipeClass();
         private List<object> orignalList = new List<object>();
 
-        
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that houses the switch statement for the menu
         public void menuOptions()
@@ -235,25 +235,34 @@ namespace ST10249266_PROG_POE.Classes
             if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
             {
                 Console.WriteLine("------------------------------------------------------");
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("INGREDIENTS:");
+                Console.ResetColor();
 
                 //foreach statement that prints out the ingredients(github copilot helped me with the foreach statemment)
+                int j = 1;
                 foreach (Ingredients ingredient in recipe.IngredientList)
                 {
-                    int j = 1;
+                    Console.ForegroundColor = ConsoleColor.Green;
+
                     Console.WriteLine($"{j}){ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ");
-                    j = j++;
+                    j++;
+                    Console.ResetColor();
                 }
                 Console.WriteLine("------------------------------------------------------");
 
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("INSTRUCTIONS:");
+                Console.ResetColor();
 
                 //for statement that prints out the steps for the recipe
+                int no = 1;
                 for (int k = 0; k < noSteps; k++)
                 {
-                    int no = 1;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine(no + ")" + recipe.Steps1[k]);
-                    no = no++;
+                    Console.ResetColor();
+                    no++;
                 }
                 Console.WriteLine("------------------------------------------------------");
                 menuOptions();
@@ -386,6 +395,7 @@ namespace ST10249266_PROG_POE.Classes
                 menuOptions();
             }
         }
+
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that saves the original recipe
         private void saveOriginal()
