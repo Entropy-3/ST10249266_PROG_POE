@@ -6,6 +6,8 @@ The application allows for recipes to be scaled by a factor of 0.5x, 2x and 3x.
 <br/>
 ----------------------------------------------
 <br/>
+----------------------------------------------
+<br/>
 HOW TO RUN (method 1):
 <br/>
 ----------------------------------------------
