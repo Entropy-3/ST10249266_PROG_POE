@@ -18,6 +18,7 @@ HOW TO RUN (method 1):
 --There is sometimes an issue when cloning a repository where the code wont run, should this happen restart your Visual Studio but instad of cloning a repository select to open a project and find ST10249266_PROG_POE and open it.
 then repeat steps 6, 7 and 8 again.--
 <br/>
+<br/>
 ----------------------------------------------
 HOW TO RUN (method 2):
 ----------------------------------------------
