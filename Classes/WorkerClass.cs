@@ -23,7 +23,9 @@ namespace ST10249266_PROG_POE.Classes
             //try catch to ensure that a null value does not break the code
             try
             {
-                Console.WriteLine("");
+                Console.WriteLine("------------------------------------------------------");
+                Console.WriteLine("MENU");
+                Console.WriteLine("------------------------------------------------------");
                 Console.WriteLine("Please choose an option:");
                 Console.WriteLine("1) Create a recipe");
                 Console.WriteLine("2) Print a recipe");
@@ -61,17 +63,24 @@ namespace ST10249266_PROG_POE.Classes
 
                     //case that exits the program
                     case 5:
+                        Console.WriteLine("Goodbye!");
+                        Environment.Exit(0);
+
                         break;
 
                     default:
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
+                        Console.ResetColor();
                         menuOptions();
                         break;
                 }
             }
             catch (FormatException)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
+                Console.ResetColor();
                 menuOptions();
             }
         }
@@ -80,8 +89,8 @@ namespace ST10249266_PROG_POE.Classes
         //method to create a recipe
         private void createRecipe()
         {
-            Console.WriteLine("Hi! Welcome to this recipe builder" +
-                "\nPlease Enter the number of different ingridients you want to have:");
+            Console.Write("Hi! Welcome to this recipe builder" +
+                "\nPlease Enter the number of different ingridients you want to have: ");
 
             //--------------------------------------------------------------------------------------------------------------------------------------------------\\
             //try catch that handles input validation
@@ -93,14 +102,18 @@ namespace ST10249266_PROG_POE.Classes
                 //if the number of ingredients is less than 1, it will ask the user to enter a number above zero
                 if (noIngredients < 1)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please enter a number above zero");
-                    menuOptions();
+                    Console.ResetColor();
+                    createRecipe();
                 }
             }
             catch (FormatException)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Please enter a valid number");
-                menuOptions();
+                Console.ResetColor();
+                createRecipe();
             }
 
             //for loop that will deal with getting ingridient information from the user
@@ -110,7 +123,7 @@ namespace ST10249266_PROG_POE.Classes
                 Ingredients ingredient = new Ingredients();
 
                 //Asks for user input for ingredient name
-                Console.WriteLine("Please enter the name of the ingredient:");
+                Console.Write("Please enter the name of the ingredient: ");
                 string ingredientName = Console.ReadLine();
                 ingredient.IngredientName = ingredientName;
 
@@ -119,7 +132,7 @@ namespace ST10249266_PROG_POE.Classes
                 //while loop that will keep asking the user for a valid number until they enter one
                 while (!validInput)
                 {
-                    Console.WriteLine("Please enter the quantity of the ingredient (e.g. 1):");
+                    Console.Write("Please enter the quantity of the ingredient (e.g. 1): ");
                     //try catch that handles input validation
                     try
                     {
@@ -131,17 +144,21 @@ namespace ST10249266_PROG_POE.Classes
                         }
                         else
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("please enter a number higher than 0.");
+                            Console.ResetColor();
                         }
                     }
                     catch (FormatException)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Please enter a valid number");
+                        Console.ResetColor();
                     }
                 }
 
                 //asks for user input for ingredient measurement
-                Console.WriteLine("Please enter the measurement of the ingredient (e.g. teaspoon):");
+                Console.Write("Please enter the measurement of the ingredient (e.g. teaspoon): ");
                 string ingredientMeasurement = Console.ReadLine();
                 ingredient.IngredientMeasurement = ingredientMeasurement;
 
@@ -153,7 +170,7 @@ namespace ST10249266_PROG_POE.Classes
             //while loop that will keep asking the user for a valid number until they enter one(github copilot assisted with while loop)
             while (!validinput)
             {
-                Console.WriteLine("Please enter the number of steps you want to have in your recipe:");
+                Console.Write("Please enter the number of steps you want to have in your recipe: ");
                 //try catch that handles input validation
                 try
                 {
@@ -164,14 +181,16 @@ namespace ST10249266_PROG_POE.Classes
                 }
                 catch (FormatException)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please enter a valid number");
+                    Console.ResetColor();
                 }
             }
 
             //for loop that will deal with getting the steps from the user
             for (int i = 0; i < noSteps; i++)
             {
-                Console.WriteLine("Please enter the step:");
+                Console.Write("Please enter the step: ");
                 string step = Console.ReadLine();
 
                 //adds the step to the steps list
@@ -186,7 +205,7 @@ namespace ST10249266_PROG_POE.Classes
         {
             if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
             {
-                Console.WriteLine("doing this will delete the previous recipe, are you sure? (y/n):");
+                Console.Write("doing this will delete the previous recipe, are you sure? (y/n): ");
 
                 //accepts user input and capitalises it (gitgub Copilot helped me find .ToUpper())
                 string answer = Console.ReadLine().ToUpper();
@@ -216,14 +235,18 @@ namespace ST10249266_PROG_POE.Classes
                         break;
 
                     default:
-                        Console.WriteLine("Invalid option, please choose a y or n:");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid option, please choose a y or n");
+                        Console.ResetColor();
                         clearRecipe();
                         break;
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("there is no recipe to clear");
+                Console.ResetColor();
                 menuOptions();
             }
         }
@@ -271,7 +294,9 @@ namespace ST10249266_PROG_POE.Classes
             //returns user to menu if no recipe is saved
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("There is currently no recipe saved");
+                Console.ResetColor();
                 menuOptions();
             }
         }
@@ -362,7 +387,9 @@ namespace ST10249266_PROG_POE.Classes
                                         break;
 
                                     default:
+                                        Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("Invalid option, please choose a y or n:");
+                                        Console.ResetColor();
                                         scaleRecipe();
                                         break;
                                 }
@@ -376,14 +403,18 @@ namespace ST10249266_PROG_POE.Classes
 
                         //default case that prompts the user to enter a valid number
                         default:
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Invalid option, please choose a number between 1 and 3.");
+                            Console.ResetColor();
                             scaleRecipe();
                             break;
                     }
                 }
                 catch (FormatException)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid option, please choose a number between 1 and 3.");
+                    Console.ResetColor();
                     scaleRecipe();
                 }
             }
@@ -391,7 +422,9 @@ namespace ST10249266_PROG_POE.Classes
             //takes user back to the menu if there is no recipe saved
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("There is currently no recipe saved");
+                Console.ResetColor();
                 menuOptions();
             }
         }
