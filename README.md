@@ -42,3 +42,16 @@ HOW TO RUN (method 2):
 9) In your solutrion explorer (often found on the left of your screen) click the arrow next to the ST10249266_PROG_POE project.<br/>
 10) Open Program.cs.<br/>
 11) Hit run
+
+<br/>
+<br/>
+----------------------------------------------
+<br/>
+REFERENCES:
+<br/>
+----------------------------------------------
+<br/>
+~GithubCopilot
+~https://www.youtube.com/watch?v=WhACXlObR8s
+~https://www.youtube.com/watch?v=aLhAmimoQj8
+~https://www.youtube.com/watch?v=bBDmL0U-4U8
