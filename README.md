@@ -1,4 +1,5 @@
 St10249266 Prog POE
+<br/>
 ----------------------------------------------
 This is a recipe builder application that stores the ingredients and instructions for a recipe.
 The application allows for recipes to be scaled by a factor of 0.5x, 2x and 3x.
@@ -28,4 +29,14 @@ HOW TO RUN (method 2):
 <br/>
 ----------------------------------------------
 <br/>
-1) 
+1) Open the green tab in the top right called code.<br/>
+2) Select the option to download the code as a ZIP file. <br/>
+3) Go to your downloads folder.<br/>
+4) Extract the files to a location of your choice.<br/>
+5) Open Visual Studio.<br/>
+6) Select the option on the right to open a project.<br/>
+7) Find the extracted files and select the folder.<br/>
+8) Open ST10249266_PROG_POE/sln<br/>
+9) In your solutrion explorer (often found on the left of your screen) click the arrow next to the ST10249266_PROG_POE project.<br/>
+10) Open Program.cs.<br/>
+11) Hit run
