@@ -14,5 +14,5 @@ HOW TO RUN (method 1):
 6) In your solutrion explorer (often found on the left of your screen) click the arrow next to the ST10249266_PROG_POE project.
 7) Open Program.cs.
 8) Hit run
-/\/\/There is sometimes an issue when cloning a repository where the code wont run, should this happen restart your Visual Studio but instad of cloning a repository select to open a project and find ST10249266_PROG_POE and open it.
-then repeat steps 6, 7 and 8 again./\/\/
+There is sometimes an issue when cloning a repository where the code wont run, should this happen restart your Visual Studio but instad of cloning a repository select to open a project and find ST10249266_PROG_POE and open it.
+then repeat steps 6, 7 and 8 again.
