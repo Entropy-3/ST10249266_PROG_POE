@@ -23,6 +23,7 @@ namespace ST10249266_PROG_POE.Classes
             //try catch to ensure that a null value does not break the code
             try
             {
+                //outputs the menu options to the user
                 Console.WriteLine("------------------------------------------------------");
                 Console.WriteLine("MENU");
                 Console.WriteLine("------------------------------------------------------");
@@ -33,6 +34,7 @@ namespace ST10249266_PROG_POE.Classes
                 Console.WriteLine("4) Scale a recipe");
                 Console.WriteLine("5) Exit");
 
+                //takes user input and converts it to an integer
                 int option = Convert.ToInt32(Console.ReadLine());
 
                 switch (option)
@@ -69,6 +71,7 @@ namespace ST10249266_PROG_POE.Classes
                         break;
 
                     default:
+                        //sets background colour to red and displays an error message
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
                         Console.ResetColor();
@@ -78,6 +81,7 @@ namespace ST10249266_PROG_POE.Classes
             }
             catch (FormatException)
             {
+                //sets background colour to red and displays an error message
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Invalid option, please choose a number between 1 and 4.");
                 Console.ResetColor();
@@ -89,6 +93,7 @@ namespace ST10249266_PROG_POE.Classes
         //method to create a recipe
         private void createRecipe()
         {
+            //prompts the user to enter the number of ingredients they would like to have
             Console.Write("Hi! Welcome to this recipe builder" +
                 "\nPlease Enter the number of different ingridients you want to have: ");
 
@@ -102,6 +107,7 @@ namespace ST10249266_PROG_POE.Classes
                 //if the number of ingredients is less than 1, it will ask the user to enter a number above zero
                 if (noIngredients < 1)
                 {
+                    //sets background colour to red and displays an error message
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please enter a number above zero");
                     Console.ResetColor();
@@ -110,6 +116,7 @@ namespace ST10249266_PROG_POE.Classes
             }
             catch (FormatException)
             {
+                //sets background colour to red and displays an error message
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Please enter a valid number");
                 Console.ResetColor();
@@ -136,7 +143,10 @@ namespace ST10249266_PROG_POE.Classes
                     //try catch that handles input validation
                     try
                     {
+                        //converts the user input from a string to a float
                         float ingredientQuantity = Convert.ToSingle(Console.ReadLine());
+
+                        //checks to see if the user input is greater than 0
                         if (ingredientQuantity > 0)
                         {
                             ingredient.IngredientQuantity = ingredientQuantity;
@@ -144,6 +154,7 @@ namespace ST10249266_PROG_POE.Classes
                         }
                         else
                         {
+                            //sets background colour to red and displays an error message
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("please enter a number higher than 0.");
                             Console.ResetColor();
@@ -151,6 +162,7 @@ namespace ST10249266_PROG_POE.Classes
                     }
                     catch (FormatException)
                     {
+                        //sets background colour to red and displays an error message
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Please enter a valid number");
                         Console.ResetColor();
@@ -181,6 +193,7 @@ namespace ST10249266_PROG_POE.Classes
                 }
                 catch (FormatException)
                 {
+                    //sets background colour to red and displays an error message
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please enter a valid number");
                     Console.ResetColor();
@@ -191,6 +204,8 @@ namespace ST10249266_PROG_POE.Classes
             for (int i = 0; i < noSteps; i++)
             {
                 Console.Write("Please enter the step: ");
+
+                //takes user input for the step
                 string step = Console.ReadLine();
 
                 //adds the step to the steps list
@@ -225,6 +240,7 @@ namespace ST10249266_PROG_POE.Classes
 
                         Console.WriteLine("The recipe han now been deleted!");
 
+                        //returns user to menu
                         menuOptions();
                         break;
 
@@ -235,6 +251,7 @@ namespace ST10249266_PROG_POE.Classes
                         break;
 
                     default:
+                        //sets background colour to red and displays an error message
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Invalid option, please choose a y or n");
                         Console.ResetColor();
@@ -244,6 +261,7 @@ namespace ST10249266_PROG_POE.Classes
             }
             else
             {
+                //sets background colour to red and displays an error message
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("there is no recipe to clear");
                 Console.ResetColor();
@@ -266,6 +284,7 @@ namespace ST10249266_PROG_POE.Classes
                 int j = 1;
                 foreach (Ingredients ingredient in recipe.IngredientList)
                 {
+                    //sets the colour of the text to green
                     Console.ForegroundColor = ConsoleColor.Green;
 
                     Console.WriteLine($"{j}){ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ");
@@ -274,6 +293,7 @@ namespace ST10249266_PROG_POE.Classes
                 }
                 Console.WriteLine("------------------------------------------------------");
 
+                //sets the colour of the text to magenta
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("INSTRUCTIONS:");
                 Console.ResetColor();
@@ -282,6 +302,7 @@ namespace ST10249266_PROG_POE.Classes
                 int no = 1;
                 for (int k = 0; k < noSteps; k++)
                 {
+                    //sets the colour of the text to cyan
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine(no + ")" + recipe.Steps1[k]);
                     Console.ResetColor();
@@ -294,6 +315,7 @@ namespace ST10249266_PROG_POE.Classes
             //returns user to menu if no recipe is saved
             else
             {
+                //sets the colour of the text to red and displays an error message
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("There is currently no recipe saved");
                 Console.ResetColor();
@@ -316,6 +338,7 @@ namespace ST10249266_PROG_POE.Classes
                 Console.WriteLine("4) reset");
                 Console.WriteLine("5) back");
 
+                //converts user input from a string to an integer
                 int choice = Convert.ToInt32(Console.ReadLine());
 
                 //try catch that handles if a user inputs a null value
@@ -325,7 +348,9 @@ namespace ST10249266_PROG_POE.Classes
                     {
                         //case 1 scales the recipe to 0.5x
                         case 1:
+                            //saves the original recipe
                             saveOriginal();
+
                             //foreach statement that scales the recipe to 0.5x
                             foreach (Ingredients ingredient in recipe.IngredientList)
                             {
@@ -337,6 +362,7 @@ namespace ST10249266_PROG_POE.Classes
                         //case 2 scales the recipe to 2x
                         case 2:
                             saveOriginal();
+
                             //foreach statement that scales the recipe to 2x
                             foreach (Ingredients ingredient in recipe.IngredientList)
                             {
@@ -348,6 +374,7 @@ namespace ST10249266_PROG_POE.Classes
                         //case 3 scales the recipe to 3x
                         case 3:
                             saveOriginal();
+
                             //foreach statement that scales the recipe to 3x
                             foreach (Ingredients ingredient in recipe.IngredientList)
                             {
@@ -382,11 +409,12 @@ namespace ST10249266_PROG_POE.Classes
                                         break;
 
                                     case "N":
-                                        //takes user back to menu
+                                        //takes user back to scale recipe menu
                                         scaleRecipe();
                                         break;
 
                                     default:
+                                        //sets background colour to red and displays an error message
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("Invalid option, please choose a y or n:");
                                         Console.ResetColor();
@@ -403,6 +431,7 @@ namespace ST10249266_PROG_POE.Classes
 
                         //default case that prompts the user to enter a valid number
                         default:
+                            //sets background colour to red and displays an error message
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Invalid option, please choose a number between 1 and 3.");
                             Console.ResetColor();
@@ -412,6 +441,7 @@ namespace ST10249266_PROG_POE.Classes
                 }
                 catch (FormatException)
                 {
+                    //sets background colour to red and displays an error message
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid option, please choose a number between 1 and 3.");
                     Console.ResetColor();
@@ -422,6 +452,7 @@ namespace ST10249266_PROG_POE.Classes
             //takes user back to the menu if there is no recipe saved
             else
             {
+                //sets background colour to red and displays an error message
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("There is currently no recipe saved");
                 Console.ResetColor();
