@@ -8,6 +8,10 @@ The application allows for recipes to be scaled by a factor of 0.5x, 2x and 3x.
 <br/>
 ----------------------------------------------
 <br/>
+Link to Github repository: https://github.com/Entropy-3/ST10249266_PROG_POE/tree/PART_1
+<br/>
+----------------------------------------------
+<br/>
 PREREQUISITES
 <br/>
 ----------------------------------------------
