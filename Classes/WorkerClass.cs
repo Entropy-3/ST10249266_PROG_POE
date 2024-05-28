@@ -3,6 +3,7 @@
 //Group 2
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ST10249266_PROG_POE.Classes
 {
@@ -47,20 +48,26 @@ namespace ST10249266_PROG_POE.Classes
                         createRecipe();
                         break;
 
+                    //case that contains the code to print a recipe
                     case 2:
                         Console.WriteLine("Enter the name of the recipe you want to print:");
+                        printRecipeName();
                         string printname = Console.ReadLine().ToLower().Trim();
                         printRecipe(printname);
                         break;
 
+                    //case that contains the code to clear a recipe
                     case 3:
                         Console.WriteLine("Enter the name of the recipe you want to clear:");
+                        printRecipeName();
                         string clearname = Console.ReadLine().ToLower().Trim();
                         clearRecipe(clearname);
                         break;
 
+                    //case that contains the code to scale a recipe
                     case 4:
                         Console.WriteLine("Enter the name of the recipe you want to scale:");
+                        printRecipeName();
                         string scalename = Console.ReadLine().ToLower().Trim();
                         scaleRecipe(scalename);
                         break;
@@ -96,6 +103,7 @@ namespace ST10249266_PROG_POE.Classes
         //method to create a recipe
         private void createRecipe()
         {
+            RecipeClass recipe = new RecipeClass();
             Console.WriteLine();
             //prompts the user to enter the name of the recipe
             Console.Write("Hi! Welcome to this recipe builder" +
@@ -286,6 +294,9 @@ namespace ST10249266_PROG_POE.Classes
         {
             RecipeClass recipeToPrint = recipes.Find(recipe => recipe.RecipeName == printname);
             //if statement that ensures that nothing is pringted when there is no recipe saved
+
+            
+
             if (recipeToPrint != null)
             {
                 Console.WriteLine();
@@ -507,6 +518,21 @@ namespace ST10249266_PROG_POE.Classes
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(change);
             Console.ResetColor();
+        }
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //method that prints the recipe names in alphabetical order
+        private void printRecipeName()
+        {
+            //github copilot helped me with the orderby statement
+            var sortedRecipes = recipes.OrderBy(recipe => recipe.RecipeName);
+            int j = 1;
+            //foreach statement that prints out the recipe names
+            foreach (var recipe in sortedRecipes)
+            {
+                Console.WriteLine($"{j}): {recipe.RecipeName}");
+                j++;
+            }
         }
     }
 }
