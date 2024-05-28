@@ -13,6 +13,7 @@ namespace ST10249266_PROG_POE.Classes
         private int noIngredients;
 
         private int noSteps;
+        private List<RecipeClass> recipes = new List<RecipeClass>();
         private RecipeClass recipe = new RecipeClass();
         private List<object> orignalList = new List<object>();
 
@@ -46,23 +47,22 @@ namespace ST10249266_PROG_POE.Classes
                         createRecipe();
                         break;
 
-                    //case that contains the code to print a recipe
                     case 2:
-                        // Code to print a recipe
-                        printRecipe();
+                        Console.WriteLine("Enter the name of the recipe you want to print:");
+                        string printname = Console.ReadLine().ToLower().Trim();
+                        printRecipe(printname);
                         break;
 
-                    //case that contains the code to clear a recipe
                     case 3:
-                        //method that contains the code to clear a recipe
-                        clearRecipe();
-
+                        Console.WriteLine("Enter the name of the recipe you want to clear:");
+                        string clearname = Console.ReadLine().ToLower().Trim();
+                        clearRecipe(clearname);
                         break;
 
-                    //case that contains the code to scale a recipe
                     case 4:
-                        // Code to scale a recipe
-                        scaleRecipe();
+                        Console.WriteLine("Enter the name of the recipe you want to scale:");
+                        string scalename = Console.ReadLine().ToLower().Trim();
+                        scaleRecipe(scalename);
                         break;
 
                     //case that exits the program
@@ -77,7 +77,7 @@ namespace ST10249266_PROG_POE.Classes
                         Console.WriteLine();
                         //sets background colour to red and displays an error message
                         errorColourChanger("Invalid option, please choose a number between 1 and 4.");
-                        
+
                         menuOptions();
                         break;
                 }
@@ -97,10 +97,14 @@ namespace ST10249266_PROG_POE.Classes
         private void createRecipe()
         {
             Console.WriteLine();
-            //prompts the user to enter the number of ingredients they would like to have
+            //prompts the user to enter the name of the recipe
             Console.Write("Hi! Welcome to this recipe builder" +
-                "\nPlease Enter the number of different ingridients you want to have: ");
+                "\nPlease enter the name of the recipe you would like to create: ");
+            string recipename = Console.ReadLine().ToLower().Trim();
+            recipe.RecipeName = recipename;
 
+            Console.WriteLine();
+            Console.Write("how many ingredients do you want in the recipe?: ");
             //--------------------------------------------------------------------------------------------------------------------------------------------------\\
             //try catch that handles input validation
             try
@@ -122,7 +126,7 @@ namespace ST10249266_PROG_POE.Classes
                 Console.WriteLine();
                 //sets background colour to red and displays an error message
                 errorColourChanger("Please enter a valid number");
-                
+
                 createRecipe();
             }
 
@@ -216,14 +220,16 @@ namespace ST10249266_PROG_POE.Classes
                 //adds the step to the steps list
                 recipe.Steps1.Add(step);
             }
+            recipes.Add(recipe);
             menuOptions();
         }
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that contains the code to clear a recipe
-        private void clearRecipe()
+        private void clearRecipe(string nameclear)
         {
-            if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
+            RecipeClass recipeToClear = recipes.Find(recipe => recipe.RecipeName == nameclear);
+            if (recipeToClear != null)
             {
                 Console.WriteLine();
                 Console.Write("doing this will delete the previous recipe, are you sure? (y/n): ");
@@ -234,15 +240,15 @@ namespace ST10249266_PROG_POE.Classes
                 {
                     //case that clears the recipe
                     case "Y":
-                        //clears the ingredients array
-                        recipe.IngredientList.Clear();
-
-                        //clears the steps array
-                        recipe.Steps1.Clear();
+                        //// If the recipe was found, clear it
+                        //recipeToClear.IngredientList.Clear();
+                        //recipeToClear.Steps1.Clear();
 
                         //resets variables to 0
                         noIngredients = 0;
                         noSteps = 0;
+
+                        recipes.Remove(recipeToClear);
 
                         Console.WriteLine();
                         Console.WriteLine("The recipe han now been deleted!");
@@ -261,7 +267,7 @@ namespace ST10249266_PROG_POE.Classes
                         Console.WriteLine();
                         //sets background colour to red and displays an error message
                         errorColourChanger("Invalid option, please choose a y or n");
-                        clearRecipe();
+                        clearRecipe(nameclear);
                         break;
                 }
             }
@@ -269,16 +275,18 @@ namespace ST10249266_PROG_POE.Classes
             {
                 Console.WriteLine();
                 //sets background colour to red and displays an error message
-                errorColourChanger("there is no recipe to clear");
+                errorColourChanger("there is no recipe by that name");
                 menuOptions();
             }
         }
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that contains the code to print a recipe
-        private void printRecipe()
-        {   //if statement that ensures that nothing is pringted when there is no recipe saved
-            if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
+        private void printRecipe(string printname)
+        {
+            RecipeClass recipeToPrint = recipes.Find(recipe => recipe.RecipeName == printname);
+            //if statement that ensures that nothing is pringted when there is no recipe saved
+            if (recipeToPrint != null)
             {
                 Console.WriteLine();
                 colourChanger("------------------------------------------------------");
@@ -286,7 +294,7 @@ namespace ST10249266_PROG_POE.Classes
 
                 //foreach statement that prints out the ingredients(github copilot helped me with the foreach statemment)
                 int j = 1;
-                foreach (Ingredients ingredient in recipe.IngredientList)
+                foreach (Ingredients ingredient in recipeToPrint.IngredientList)
                 {
                     //sets the colour of the text to green
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -299,7 +307,6 @@ namespace ST10249266_PROG_POE.Classes
 
                 //sets the colour of the text to magenta
                 colourChanger("INSTRUCTIONS:");
-                
 
                 //for statement that prints out the steps for the recipe
                 int no = 1;
@@ -307,7 +314,7 @@ namespace ST10249266_PROG_POE.Classes
                 {
                     //sets the colour of the text to cyan
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("Step " + no + ") " + recipe.Steps1[k]);
+                    Console.WriteLine("Step " + no + ") " + recipeToPrint.Steps1[k]);
                     Console.ResetColor();
                     no++;
                 }
@@ -327,8 +334,10 @@ namespace ST10249266_PROG_POE.Classes
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that contains the code to scale a recipe
-        private void scaleRecipe()
+        private void scaleRecipe(string namescale)
         {
+            RecipeClass recipeToScale = recipes.Find(recipe => recipe.RecipeName == namescale);
+
             //if statement that ensures that there is a recipe saved
             if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
             {
@@ -363,7 +372,7 @@ namespace ST10249266_PROG_POE.Classes
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity / 2;
                             }
-                            printRecipe();
+                            printRecipe(namescale);
                             break;
 
                         //case 2 scales the recipe to 2x
@@ -375,7 +384,7 @@ namespace ST10249266_PROG_POE.Classes
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity * 2;
                             }
-                            printRecipe();
+                            printRecipe(namescale);
                             break;
 
                         //case 3 scales the recipe to 3x
@@ -387,7 +396,7 @@ namespace ST10249266_PROG_POE.Classes
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity * 3;
                             }
-                            printRecipe();
+                            printRecipe(namescale);
                             break;
 
                         //case 4 resets the recipe to original values
@@ -412,12 +421,12 @@ namespace ST10249266_PROG_POE.Classes
                                             ingredient.IngredientQuantity = originalIngredient.IngredientQuantity;
                                             no++;
                                         }
-                                        printRecipe();
+                                        printRecipe(namescale);
                                         break;
 
                                     case "N":
                                         //takes user back to scale recipe menu
-                                        scaleRecipe();
+                                        scaleRecipe(namescale);
                                         break;
 
                                     default:
@@ -426,7 +435,7 @@ namespace ST10249266_PROG_POE.Classes
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.WriteLine("Invalid option, please choose a y or n:");
                                         Console.ResetColor();
-                                        scaleRecipe();
+                                        scaleRecipe(namescale);
                                         break;
                                 }
                             }
@@ -442,7 +451,7 @@ namespace ST10249266_PROG_POE.Classes
                             Console.WriteLine();
                             //sets background colour to red and displays an error message
                             errorColourChanger("Invalid option, please choose a number between 1 and 5.");
-                            scaleRecipe();
+                            scaleRecipe(namescale);
                             break;
                     }
                 }
@@ -451,7 +460,7 @@ namespace ST10249266_PROG_POE.Classes
                     Console.WriteLine();
                     //sets background colour to red and displays an error message
                     errorColourChanger("Invalid option, please choose a number between 1 and 5.");
-                    scaleRecipe();
+                    scaleRecipe(namescale);
                 }
             }
 
