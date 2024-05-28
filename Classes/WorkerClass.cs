@@ -339,7 +339,7 @@ namespace ST10249266_PROG_POE.Classes
             RecipeClass recipeToScale = recipes.Find(recipe => recipe.RecipeName == namescale);
 
             //if statement that ensures that there is a recipe saved
-            if (recipe.IngredientList.Count > 0 && recipe.Steps1.Count > 0)
+            if (recipeToScale != null)
             {
                 Console.WriteLine();
                 //prompts user to enter the number of servings they would like to scale the recipe to
@@ -368,7 +368,7 @@ namespace ST10249266_PROG_POE.Classes
                             saveOriginal();
 
                             //foreach statement that scales the recipe to 0.5x
-                            foreach (Ingredients ingredient in recipe.IngredientList)
+                            foreach (Ingredients ingredient in recipeToScale.IngredientList)
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity / 2;
                             }
@@ -380,7 +380,7 @@ namespace ST10249266_PROG_POE.Classes
                             saveOriginal();
 
                             //foreach statement that scales the recipe to 2x
-                            foreach (Ingredients ingredient in recipe.IngredientList)
+                            foreach (Ingredients ingredient in recipeToScale.IngredientList)
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity * 2;
                             }
@@ -392,7 +392,7 @@ namespace ST10249266_PROG_POE.Classes
                             saveOriginal();
 
                             //foreach statement that scales the recipe to 3x
-                            foreach (Ingredients ingredient in recipe.IngredientList)
+                            foreach (Ingredients ingredient in recipeToScale.IngredientList)
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity * 3;
                             }
