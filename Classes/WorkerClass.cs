@@ -150,6 +150,17 @@ namespace ST10249266_PROG_POE.Classes
                 Console.Write("Please enter the name of the ingredient: ");
                 ingredientName = Console.ReadLine();
 
+                Console.WriteLine();
+                //asks for user input for ingredient measurement
+                Console.Write("Please enter the measurement of the ingredient (teaspoon, tablespoon and cup): ");
+                ingredientMeasurement = Console.ReadLine().ToLower().Trim();
+
+                //calls the scaler method from the unit converter class
+                
+
+                UnitConverter.scaler(ref ingredientMeasurement, ref ingredientQuantity);
+
+
                 //asks for user input for ingredient quantity
                 bool validInput = false;
                 //while loop that will keep asking the user for a valid number until they enter one
@@ -183,11 +194,6 @@ namespace ST10249266_PROG_POE.Classes
                         errorColourChanger("Please enter a valid number");
                     }
                 }
-
-                Console.WriteLine();
-                //asks for user input for ingredient measurement
-                Console.Write("Please enter the measurement of the ingredient (e.g. teaspoon): ");
-                ingredientMeasurement = Console.ReadLine();
 
                 Console.WriteLine();
 
@@ -380,8 +386,10 @@ namespace ST10249266_PROG_POE.Classes
 
                     Console.WriteLine($"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} Calories: {ingredient.IngredientCalories} food group: {ingredient.IngredientFoodGroup}");
                     j++;
+                    
                     Console.ResetColor();
                 }
+                Console.WriteLine(recipeToPrint.totalCalories());
                 colourChanger("------------------------------------------------------");
 
                 //sets the colour of the text to magenta
@@ -448,6 +456,17 @@ namespace ST10249266_PROG_POE.Classes
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity / 2;
                                 ingredient.IngredientCalories = ingredient.IngredientCalories / 2;
+
+                                //calls the scaler method from the unit converter class
+                                //temp methods allow for ingredient object to be a ref
+                                float tempIngredientQuantity = ingredient.IngredientQuantity;
+                                string tempIngredientMeasurement = ingredient.IngredientMeasurement;
+
+                                UnitConverter.scaler(ref tempIngredientMeasurement, ref tempIngredientQuantity);
+
+                                ingredient.IngredientMeasurement = tempIngredientMeasurement;
+                                ingredient.IngredientQuantity = tempIngredientQuantity;
+
                             }
                             printRecipe(namescale);
                             break;
@@ -459,6 +478,16 @@ namespace ST10249266_PROG_POE.Classes
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity * 2;
                                 ingredient.IngredientCalories = ingredient.IngredientCalories * 2;
+
+                                //calls the scaler method from the unit converter class
+                                //temp methods allow for ingredient object to be a ref
+                                float tempIngredientQuantity = ingredient.IngredientQuantity;
+                                string tempIngredientMeasurement = ingredient.IngredientMeasurement;
+
+                                UnitConverter.scaler(ref tempIngredientMeasurement, ref tempIngredientQuantity);
+
+                                ingredient.IngredientMeasurement = tempIngredientMeasurement;
+                                ingredient.IngredientQuantity = tempIngredientQuantity;
                             }
                             printRecipe(namescale);
                             break;
@@ -470,6 +499,16 @@ namespace ST10249266_PROG_POE.Classes
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity * 3;
                                 ingredient.IngredientCalories = ingredient.IngredientCalories * 3;
+
+                                //calls the scaler method from the unit converter class
+                                //temp methods allow for ingredient object to be a ref
+                                float tempIngredientQuantity = ingredient.IngredientQuantity;
+                                string tempIngredientMeasurement = ingredient.IngredientMeasurement;
+
+                                UnitConverter.scaler(ref tempIngredientMeasurement, ref tempIngredientQuantity);
+
+                                ingredient.IngredientMeasurement = tempIngredientMeasurement;
+                                ingredient.IngredientQuantity = tempIngredientQuantity;
                             }
                             printRecipe(namescale);
                             break;

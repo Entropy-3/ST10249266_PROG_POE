@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +29,22 @@ namespace ST10249266_PROG_POE.Classes
         public List<string> Steps1 { get => Steps; set => Steps = value; }
 
         public string RecipeName { get => recipeName; set => recipeName = value; }
+       
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        public int totalCalories()
+        {
+            //variable that will hold the total calories
+            int totalCalories = 0;
+
+            //loop that will go through the ingredient list and add the calories of each ingredient to the total calories
+            foreach (Ingredients ingredient in ingredientList)
+            {
+                totalCalories += ingredient.IngredientCalories;
+            }
+
+            //output the total calories
+            return totalCalories;
+        }
     }
 }
 
