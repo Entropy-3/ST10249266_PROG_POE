@@ -15,8 +15,6 @@ namespace ST10249266_PROG_POE.Classes
 
         private int noSteps;
         private List<RecipeClass> recipes = new List<RecipeClass>();
-        private RecipeClass recipe = new RecipeClass();
-        private List<object> orignalList = new List<object>();
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that houses the switch statement for the menu
@@ -141,14 +139,16 @@ namespace ST10249266_PROG_POE.Classes
             //for loop that will deal with getting ingridient information from the user
             for (int i = 0; i < noIngredients; i++)
             {
-                //creates an object of the Ingredients class
-                Ingredients ingredient = new Ingredients();
+                string ingredientName;
+                float ingredientQuantity = 0;
+                string ingredientMeasurement;
+                string ingredientFoodGroup = "";
+                int ingredientCalories;
 
                 Console.WriteLine();
                 //Asks for user input for ingredient name
                 Console.Write("Please enter the name of the ingredient: ");
-                string ingredientName = Console.ReadLine();
-                ingredient.IngredientName = ingredientName;
+                ingredientName = Console.ReadLine();
 
                 //asks for user input for ingredient quantity
                 bool validInput = false;
@@ -161,12 +161,12 @@ namespace ST10249266_PROG_POE.Classes
                     try
                     {
                         //converts the user input from a string to a float
-                        float ingredientQuantity = Convert.ToSingle(Console.ReadLine());
+                        float ingredientQuantityTest = Convert.ToSingle(Console.ReadLine());
 
                         //checks to see if the user input is greater than 0
-                        if (ingredientQuantity > 0)
+                        if (ingredientQuantityTest > 0)
                         {
-                            ingredient.IngredientQuantity = ingredientQuantity;
+                            ingredientQuantity = ingredientQuantityTest;
                             validInput = true;
                         }
                         else
@@ -187,17 +187,85 @@ namespace ST10249266_PROG_POE.Classes
                 Console.WriteLine();
                 //asks for user input for ingredient measurement
                 Console.Write("Please enter the measurement of the ingredient (e.g. teaspoon): ");
-                string ingredientMeasurement = Console.ReadLine();
-                ingredient.IngredientMeasurement = ingredientMeasurement;
+                ingredientMeasurement = Console.ReadLine();
 
                 Console.WriteLine();
-                //asks for user input for ingredient food group
-                Console.Write("Please enter the food group of the ingredient (e.g. Protien): ");
-                string ingredientFoodGroup = Console.ReadLine();
-                ingredient.IngredientFoodGroup = ingredientFoodGroup;
+
+                //food group menu
+                //https://www.gosh.nhs.uk/conditions-and-treatments/general-health-advice-children/eat-smart/food-science/food-group-fun/
+                colourChanger("Choose a food group for the ingredient: ");
+                colourChanger("------------------------------------------------------");
+                Console.WriteLine("1) Carbohydrates");
+                Console.WriteLine("2) Protein");
+                Console.WriteLine("3) Dairy");
+                Console.WriteLine("4) fruit");
+                Console.WriteLine("5) fats");
+                colourChanger("------------------------------------------------------");
+
+                bool validinput1 = false;
+                while (!validinput1)
+                {
+                    try
+                    {
+                        //takes user input and converts it to an integer
+                        int foodGroup = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine();
+
+                        //switch statement that assigns the food group to the ingredient
+                        switch (foodGroup)
+                        {
+                            case 1:
+                                ingredientFoodGroup = "Carbohydrates";
+                                validinput1 = true;
+                                break;
+
+                            case 2:
+                                ingredientFoodGroup = "Protein";
+                                validinput1 = true;
+                                break;
+
+                            case 3:
+                                ingredientFoodGroup = "Dairy";
+                                validinput1 = true;
+                                break;
+
+                            case 4:
+                                ingredientFoodGroup = "Fruit";
+                                validinput1 = true;
+                                break;
+
+                            case 5:
+                                ingredientFoodGroup = "Fats";
+                                validinput1 = true;
+                                break;
+
+                            default:
+                                Console.WriteLine();
+                                //sets background colour to red and displays an error message
+                                errorColourChanger("Invalid option, please choose a number between 1 and 5.");
+                                break;
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine();
+                        //sets background colour to red and displays an error message
+                        errorColourChanger("Please enter a valid number");
+
+                        //createRecipe();
+                    }
+                }
+
+                Console.WriteLine();
+                //asks for user input for the amount of calories in the ingredient
+                Console.WriteLine("Please enter the amount of calories contained in the ingredient (e.g. 10):");
+                int calories = Convert.ToInt32(Console.ReadLine());
+                ingredientCalories = calories;
+
+                Ingredients newIngredient = new Ingredients(ingredientName, ingredientQuantity, ingredientMeasurement, ingredientFoodGroup, ingredientCalories);
 
                 //adds ingredient to the recipe array list
-                recipe.IngredientList.Add(ingredient);
+                recipe.IngredientList.Add(newIngredient);
             }
 
             bool validinput = false;
@@ -297,8 +365,6 @@ namespace ST10249266_PROG_POE.Classes
             RecipeClass recipeToPrint = recipes.Find(recipe => recipe.RecipeName == printname);
             //if statement that ensures that nothing is pringted when there is no recipe saved
 
-            
-
             if (recipeToPrint != null)
             {
                 Console.WriteLine();
@@ -312,7 +378,7 @@ namespace ST10249266_PROG_POE.Classes
                     //sets the colour of the text to green
                     Console.ForegroundColor = ConsoleColor.Green;
 
-                    Console.WriteLine($"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} food group: {ingredient.IngredientFoodGroup}");
+                    Console.WriteLine($"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} Calories: {ingredient.IngredientCalories} food group: {ingredient.IngredientFoodGroup}");
                     j++;
                     Console.ResetColor();
                 }
@@ -377,81 +443,72 @@ namespace ST10249266_PROG_POE.Classes
                     {
                         //case 1 scales the recipe to 0.5x
                         case 1:
-                            //saves the original recipe
-                            saveOriginal();
-
                             //foreach statement that scales the recipe to 0.5x
                             foreach (Ingredients ingredient in recipeToScale.IngredientList)
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity / 2;
+                                ingredient.IngredientCalories = ingredient.IngredientCalories / 2;
                             }
                             printRecipe(namescale);
                             break;
 
                         //case 2 scales the recipe to 2x
                         case 2:
-                            saveOriginal();
-
                             //foreach statement that scales the recipe to 2x
                             foreach (Ingredients ingredient in recipeToScale.IngredientList)
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity * 2;
+                                ingredient.IngredientCalories = ingredient.IngredientCalories * 2;
                             }
                             printRecipe(namescale);
                             break;
 
                         //case 3 scales the recipe to 3x
                         case 3:
-                            saveOriginal();
-
                             //foreach statement that scales the recipe to 3x
                             foreach (Ingredients ingredient in recipeToScale.IngredientList)
                             {
                                 ingredient.IngredientQuantity = ingredient.IngredientQuantity * 3;
+                                ingredient.IngredientCalories = ingredient.IngredientCalories * 3;
                             }
                             printRecipe(namescale);
                             break;
 
                         //case 4 resets the recipe to original values
                         case 4:
-                            if (orignalList.Count == 0)
-                            {
-                                errorColourChanger("The recipe is already at its original values");
-                            }
-                            else
-                            {
-                                Console.WriteLine();
-                                Console.WriteLine("are you sure you want to reset the recipe to its original values? (y/n)");
-                                string answer1 = Console.ReadLine().ToUpper();
-                                switch (answer1)
-                                {
-                                    case "Y":
-                                        int no = 0;
-                                        //foreach statement that overrides the scaled recipe with the original values
-                                        foreach (Ingredients ingredient in recipe.IngredientList)
-                                        {
-                                            Ingredients originalIngredient = (Ingredients)orignalList[no];
-                                            ingredient.IngredientQuantity = originalIngredient.IngredientQuantity;
-                                            no++;
-                                        }
-                                        printRecipe(namescale);
-                                        break;
 
-                                    case "N":
-                                        //takes user back to scale recipe menu
-                                        scaleRecipe(namescale);
-                                        break;
+                            Console.WriteLine();
+                            Console.WriteLine("are you sure you want to reset the recipe to its original values? (y/n)");
+                            string answer1 = Console.ReadLine().ToUpper();
+                            switch (answer1)
+                            {
+                                case "Y":
 
-                                    default:
-                                        Console.WriteLine();
-                                        //sets background colour to red and displays an error message
-                                        Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("Invalid option, please choose a y or n:");
-                                        Console.ResetColor();
-                                        scaleRecipe(namescale);
-                                        break;
-                                }
+                                    //foreach statement that overrides the scaled recipe with the original values
+                                    foreach (Ingredients ingredient in recipeToScale.IngredientList)
+                                    {
+                                        ingredient.IngredientMeasurement = ingredient.OriginalMeasurement;
+                                        ingredient.IngredientQuantity = ingredient.OriginalQuantity;
+                                        ingredient.IngredientCalories = ingredient.OriginalCalories;
+                                    }
+                                    printRecipe(namescale);
+                                    break;
+
+                                case "N":
+                                    //takes user back to scale recipe menu
+                                    scaleRecipe(namescale);
+                                    break;
+
+                                default:
+                                    Console.WriteLine();
+                                    //sets background colour to red and displays an error message
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("Invalid option, please choose a y or n:");
+                                    Console.ResetColor();
+                                    scaleRecipe(namescale);
+                                    break;
                             }
+
                             break;
 
                         //case 5 takes user back to the menu
@@ -484,23 +541,6 @@ namespace ST10249266_PROG_POE.Classes
                 //sets background colour to red and displays an error message
                 errorColourChanger("There is currently no recipe saved");
                 menuOptions();
-            }
-        }
-
-        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
-        //method that saves the original recipe
-        private void saveOriginal()
-        {
-            //foreach statement that creates a copy of the ingredient list
-            foreach (Ingredients ingredient in recipe.IngredientList)
-            {
-                //creates a local instance of ingredients that wont get overriden when scaling the recipe
-                //github copilot helped me with the local instance of ingredients
-                Ingredients copy = new Ingredients
-                {
-                    IngredientQuantity = ingredient.IngredientQuantity,
-                };
-                orignalList.Add(copy);
             }
         }
 
