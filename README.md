@@ -60,6 +60,20 @@ HOW TO RUN (method 2):
 <br/>
 ----------------------------------------------
 <br/>
+CHANGE LOG (V2.0)
+<br/>
+----------------------------------------------
+<br/>
+~Added functionality for multiple recipes to be saved.<br/>
+~Added functionality for giving an ingredient a food group.<br/>
+~Added functionality for giving an ingredient a caloric value.<br/>
+~Added a warning feature for when an ingredient has a caloric value greater than 300.<br/>
+~Added fucntionality to scale the unit of measurement when needed. i.e. 16 tablespoons = 1 cup.(on lecturers feedback)<br/>
+~Added more error handling and input validation.(on lecturers feedback)<br/>
+<br/>
+<br/>
+----------------------------------------------
+<br/>
 REFERENCES:
 <br/>
 ----------------------------------------------
@@ -68,5 +82,5 @@ REFERENCES:
 ~https://www.youtube.com/watch?v=WhACXlObR8s<br/>
 ~https://www.youtube.com/watch?v=aLhAmimoQj8<br/>
 ~https://www.youtube.com/watch?v=bBDmL0U-4U8<br/>
-~https://www.gosh.nhs.uk/conditions-and-treatments/general-health-advice-children/eat-smart/food-science/food-group-fun/<br\>
-~https://www.youtube.com/watch?v=uAhVpw8zzm4<br\>
+~https://www.gosh.nhs.uk/conditions-and-treatments/general-health-advice-children/eat-smart/food-science/food-group-fun/<br/>
+~https://www.youtube.com/watch?v=uAhVpw8zzm4<br/>
