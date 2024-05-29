@@ -99,7 +99,7 @@ namespace ST10249266_PROG_POE.Classes
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method to create a recipe
-        private void createRecipe()
+        public void createRecipe()
         {
             RecipeClass recipe = new RecipeClass();
             Console.WriteLine();
@@ -152,14 +152,8 @@ namespace ST10249266_PROG_POE.Classes
 
                 Console.WriteLine();
                 //asks for user input for ingredient measurement
-                Console.Write("Please enter the measurement of the ingredient (teaspoon, tablespoon and cup): ");
+                Console.Write("Please enter the measurement of the ingredient (teaspoon/s, tablespoon/s and cup/s): ");
                 ingredientMeasurement = Console.ReadLine().ToLower().Trim();
-
-                //calls the scaler method from the unit converter class
-                
-
-                UnitConverter.scaler(ref ingredientMeasurement, ref ingredientQuantity);
-
 
                 //asks for user input for ingredient quantity
                 bool validInput = false;
@@ -195,72 +189,13 @@ namespace ST10249266_PROG_POE.Classes
                     }
                 }
 
+                //calls the scaler method from the unit converter class
+                UnitConverter.scaler(ref ingredientMeasurement, ref ingredientQuantity);
+
                 Console.WriteLine();
-
-                //food group menu
-                //https://www.gosh.nhs.uk/conditions-and-treatments/general-health-advice-children/eat-smart/food-science/food-group-fun/
-                colourChanger("Choose a food group for the ingredient: ");
-                colourChanger("------------------------------------------------------");
-                Console.WriteLine("1) Carbohydrates");
-                Console.WriteLine("2) Protein");
-                Console.WriteLine("3) Dairy");
-                Console.WriteLine("4) fruit");
-                Console.WriteLine("5) fats");
-                colourChanger("------------------------------------------------------");
-
-                bool validinput1 = false;
-                while (!validinput1)
-                {
-                    try
-                    {
-                        //takes user input and converts it to an integer
-                        int foodGroup = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine();
-
-                        //switch statement that assigns the food group to the ingredient
-                        switch (foodGroup)
-                        {
-                            case 1:
-                                ingredientFoodGroup = "Carbohydrates";
-                                validinput1 = true;
-                                break;
-
-                            case 2:
-                                ingredientFoodGroup = "Protein";
-                                validinput1 = true;
-                                break;
-
-                            case 3:
-                                ingredientFoodGroup = "Dairy";
-                                validinput1 = true;
-                                break;
-
-                            case 4:
-                                ingredientFoodGroup = "Fruit";
-                                validinput1 = true;
-                                break;
-
-                            case 5:
-                                ingredientFoodGroup = "Fats";
-                                validinput1 = true;
-                                break;
-
-                            default:
-                                Console.WriteLine();
-                                //sets background colour to red and displays an error message
-                                errorColourChanger("Invalid option, please choose a number between 1 and 5.");
-                                break;
-                        }
-                    }
-                    catch (FormatException)
-                    {
-                        Console.WriteLine();
-                        //sets background colour to red and displays an error message
-                        errorColourChanger("Please enter a valid number");
-
-                        //createRecipe();
-                    }
-                }
+                
+                //calls the foodGroupSelector method
+                foodGroupSelector(ref ingredientFoodGroup);
 
                 Console.WriteLine();
                 //asks for user input for the amount of calories in the ingredient
@@ -268,6 +203,7 @@ namespace ST10249266_PROG_POE.Classes
                 int calories = Convert.ToInt32(Console.ReadLine());
                 ingredientCalories = calories;
 
+                //creates the ingredient object
                 Ingredients newIngredient = new Ingredients(ingredientName, ingredientQuantity, ingredientMeasurement, ingredientFoodGroup, ingredientCalories);
 
                 //adds ingredient to the recipe array list
@@ -389,7 +325,9 @@ namespace ST10249266_PROG_POE.Classes
                     
                     Console.ResetColor();
                 }
-                Console.WriteLine(recipeToPrint.totalCalories());
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Total Calories: " + recipeToPrint.totalCalories());
+                Console.ResetColor();
                 colourChanger("------------------------------------------------------");
 
                 //sets the colour of the text to magenta
@@ -594,7 +532,7 @@ namespace ST10249266_PROG_POE.Classes
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //changes the colour of a string to red
-        private void errorColourChanger(string change)
+        public void errorColourChanger(string change)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(change);
@@ -613,6 +551,69 @@ namespace ST10249266_PROG_POE.Classes
             {
                 Console.WriteLine($"{j}): {recipe.RecipeName}");
                 j++;
+            }
+        }
+        private void foodGroupSelector(ref string FoodGroup) {
+            colourChanger("Choose a food group for the ingredient: ");
+            colourChanger("------------------------------------------------------");
+            Console.WriteLine("1) Carbohydrates");
+            Console.WriteLine("2) Protein");
+            Console.WriteLine("3) Dairy");
+            Console.WriteLine("4) fruit");
+            Console.WriteLine("5) fats");
+            colourChanger("------------------------------------------------------");
+
+            bool validinput1 = false;
+            while (!validinput1)
+            {
+                try
+                {
+                    //takes user input and converts it to an integer
+                    int foodGroup = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine();
+
+                    //switch statement that assigns the food group to the ingredient
+                    switch (foodGroup)
+                    {
+                        case 1:
+                            FoodGroup = "Carbohydrates";
+                            validinput1 = true;
+                            break;
+
+                        case 2:
+                            FoodGroup = "Protein";
+                            validinput1 = true;
+                            break;
+
+                        case 3:
+                            FoodGroup = "Dairy";
+                            validinput1 = true;
+                            break;
+
+                        case 4:
+                            FoodGroup = "Fruit";
+                            validinput1 = true;
+                            break;
+
+                        case 5:
+                            FoodGroup = "Fats";
+                            validinput1 = true;
+                            break;
+
+                        default:
+                            Console.WriteLine();
+                            //sets background colour to red and displays an error message
+                            errorColourChanger("Invalid option, please choose a number between 1 and 5.");
+                            break;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine();
+                    //sets background colour to red and displays an error message
+                    errorColourChanger("Please enter a valid number");
+
+                }
             }
         }
     }

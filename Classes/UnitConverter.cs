@@ -11,11 +11,14 @@ namespace ST10249266_PROG_POE.Classes
         private const int TablespoonsInCup = 16;
         private const int TeaspoonsInCup = 48;
         private const int TeasponnsInTablespoon = 3;
+        
 
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         // Method to convert the ingredient measurement to the smallest unit of measurement
         //copilot helped me understand ref and what it does
         public static void scaler(ref string ingredientMeasurement, ref float ingredientQuantity)
         {
+            WorkerClass worker = new WorkerClass();
             switch (ingredientMeasurement)
             {
                 case "tablespoon":
@@ -25,6 +28,15 @@ namespace ST10249266_PROG_POE.Classes
                         ingredientQuantity /= TablespoonsInCup;
                     }
                     break;
+                case "tablespoons":
+                    if (ingredientQuantity >= TablespoonsInCup)
+                    {
+                        ingredientMeasurement = "cup";
+                        ingredientQuantity /= TablespoonsInCup;
+                    }
+                    break;
+
+                    //-------------------------------------------------
                 case "teaspoon":
                     if (ingredientQuantity >= TeaspoonsInCup)
                     {
@@ -37,6 +49,20 @@ namespace ST10249266_PROG_POE.Classes
                         ingredientQuantity /= TeasponnsInTablespoon;
                     }
                     break;
+                case "teaspoons":
+                    if (ingredientQuantity >= TeaspoonsInCup)
+                    {
+                        ingredientMeasurement = "cup";
+                        ingredientQuantity /= TeaspoonsInCup;
+                    }
+                    if (ingredientQuantity >= TeasponnsInTablespoon)
+                    {
+                        ingredientMeasurement = "tablespoon";
+                        ingredientQuantity /= TeasponnsInTablespoon;
+                    }
+                    break;
+
+                //-------------------------------------------------
                 case "cup":
                     if (ingredientQuantity > 1)
                     {
@@ -44,7 +70,20 @@ namespace ST10249266_PROG_POE.Classes
                         ingredientQuantity *= TablespoonsInCup;
                     }
                     break;
+                case "cups":
+                    if (ingredientQuantity > 1)
+                    {
+                        ingredientMeasurement = "tablespoon";
+                        ingredientQuantity *= TablespoonsInCup;
+                    }
+                    break;
+
+                default:
+                    worker.errorColourChanger("please enter only tablespoon, teaspoon or cup");
+                    worker.createRecipe();
+                    break;
             }
         }
     }
 }
+//-------------------------------------EOF----------------------------------------\\
