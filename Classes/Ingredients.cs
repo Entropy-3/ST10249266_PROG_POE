@@ -3,7 +3,7 @@
 //Group 2
 namespace ST10249266_PROG_POE.Classes
 {
-    internal class Ingredients
+    public class Ingredients
     {
         private string ingredientName;
         private float ingredientQuantity;

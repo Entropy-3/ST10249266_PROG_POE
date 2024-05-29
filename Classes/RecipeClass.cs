@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ST10249266_PROG_POE.Classes
 {
-    internal class RecipeClass
+    public class RecipeClass
     {
         //string that will hold the recipe name
         private string recipeName;
