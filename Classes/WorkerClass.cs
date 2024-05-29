@@ -293,14 +293,10 @@ namespace ST10249266_PROG_POE.Classes
                 {
                     //case that clears the recipe
                     case "Y":
-                        //resets variables to 0
-                        noIngredients = 0;
-                        noSteps = 0;
-
                         recipes.Remove(recipeToClear);
 
                         Console.WriteLine();
-                        Console.WriteLine("The recipe han now been deleted!");
+                        Console.WriteLine("The recipe has now been deleted!");
 
                         //returns user to menu
                         menuOptions();
@@ -648,7 +644,7 @@ namespace ST10249266_PROG_POE.Classes
         
         public CheckCaloriesDelegate checkCalories = (calories) =>
         {
-            if (calories > 300)
+            if (calories >= 300)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("The calories for this ingredient is higher than 300 and could be unhealthy");
