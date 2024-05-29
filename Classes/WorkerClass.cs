@@ -190,6 +190,12 @@ namespace ST10249266_PROG_POE.Classes
                 string ingredientMeasurement = Console.ReadLine();
                 ingredient.IngredientMeasurement = ingredientMeasurement;
 
+                Console.WriteLine();
+                //asks for user input for ingredient food group
+                Console.Write("Please enter the food group of the ingredient (e.g. Protien): ");
+                string ingredientFoodGroup = Console.ReadLine();
+                ingredient.IngredientFoodGroup = ingredientFoodGroup;
+
                 //adds ingredient to the recipe array list
                 recipe.IngredientList.Add(ingredient);
             }
@@ -248,10 +254,6 @@ namespace ST10249266_PROG_POE.Classes
                 {
                     //case that clears the recipe
                     case "Y":
-                        //// If the recipe was found, clear it
-                        //recipeToClear.IngredientList.Clear();
-                        //recipeToClear.Steps1.Clear();
-
                         //resets variables to 0
                         noIngredients = 0;
                         noSteps = 0;
@@ -310,7 +312,7 @@ namespace ST10249266_PROG_POE.Classes
                     //sets the colour of the text to green
                     Console.ForegroundColor = ConsoleColor.Green;
 
-                    Console.WriteLine($"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} ");
+                    Console.WriteLine($"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} food group: {ingredient.IngredientFoodGroup}");
                     j++;
                     Console.ResetColor();
                 }
