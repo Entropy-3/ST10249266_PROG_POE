@@ -10,10 +10,6 @@ namespace ST10249266_PROG_POE.Classes
     internal class WorkerClass
     {
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
-        //declaring the delegate
-        public delegate void CheckCaloriesDelegate(int calories);
-
-        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //variables that will be used in the class
         private int noIngredients;
 
@@ -216,8 +212,7 @@ namespace ST10249266_PROG_POE.Classes
                         int calories = Convert.ToInt32(Console.ReadLine());
                         ingredientCalories = calories;
 
-                        //calls the checkCalories delegate
-                        checkCalories(ingredientCalories);
+                        
 
                         //breaks out of the loop
                         validInput1 = true;
@@ -235,8 +230,12 @@ namespace ST10249266_PROG_POE.Classes
                 //creates the ingredient object
                 Ingredients newIngredient = new Ingredients(ingredientName, ingredientQuantity, ingredientMeasurement, ingredientFoodGroup, ingredientCalories);
 
+                
+
                 //adds ingredient to the recipe array list
                 recipe.IngredientList.Add(newIngredient);
+                
+                recipe.totalCalories();
             }
 
             bool validinput = false;
@@ -642,15 +641,7 @@ namespace ST10249266_PROG_POE.Classes
             }
         }
         
-        public CheckCaloriesDelegate checkCalories = (calories) =>
-        {
-            if (calories >= 300)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("The calories for this ingredient is higher than 300 and could be unhealthy");
-                Console.ResetColor();
-            }
-        };
+        
 
     }
 }
