@@ -43,7 +43,7 @@ namespace ST10249266_PROG_POE.Classes
                         ingredientMeasurement = "cup";
                         ingredientQuantity /= TeaspoonsInCup;
                     }
-                    if (ingredientQuantity >= TeasponnsInTablespoon)
+                    else if (ingredientQuantity >= TeasponnsInTablespoon)
                     {
                         ingredientMeasurement = "tablespoon";
                         ingredientQuantity /= TeasponnsInTablespoon;
@@ -52,12 +52,12 @@ namespace ST10249266_PROG_POE.Classes
                 case "teaspoons":
                     if (ingredientQuantity >= TeaspoonsInCup)
                     {
-                        ingredientMeasurement = "cup";
+                        ingredientMeasurement = "cups";
                         ingredientQuantity /= TeaspoonsInCup;
                     }
-                    if (ingredientQuantity >= TeasponnsInTablespoon)
+                    else if (ingredientQuantity >= TeasponnsInTablespoon)
                     {
-                        ingredientMeasurement = "tablespoon";
+                        ingredientMeasurement = "tablespoons";
                         ingredientQuantity /= TeasponnsInTablespoon;
                     }
                     break;
@@ -73,7 +73,7 @@ namespace ST10249266_PROG_POE.Classes
                 case "cups":
                     if (ingredientQuantity > 1)
                     {
-                        ingredientMeasurement = "tablespoon";
+                        ingredientMeasurement = "tablespoons";
                         ingredientQuantity *= TablespoonsInCup;
                     }
                     break;

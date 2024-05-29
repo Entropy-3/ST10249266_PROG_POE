@@ -10,6 +10,10 @@ namespace ST10249266_PROG_POE.Classes
     internal class WorkerClass
     {
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //delegate
+        public delegate void CheckCaloriesDelegate(int calories);
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //variables that will be used in the class
         private int noIngredients;
 
@@ -143,7 +147,7 @@ namespace ST10249266_PROG_POE.Classes
                 float ingredientQuantity = 0;
                 string ingredientMeasurement;
                 string ingredientFoodGroup = "";
-                int ingredientCalories;
+                int ingredientCalories = 0;
 
                 Console.WriteLine();
                 //Asks for user input for ingredient name
@@ -172,6 +176,8 @@ namespace ST10249266_PROG_POE.Classes
                         if (ingredientQuantityTest > 0)
                         {
                             ingredientQuantity = ingredientQuantityTest;
+
+                            //breaks out of the loop
                             validInput = true;
                         }
                         else
@@ -198,10 +204,33 @@ namespace ST10249266_PROG_POE.Classes
                 foodGroupSelector(ref ingredientFoodGroup);
 
                 Console.WriteLine();
-                //asks for user input for the amount of calories in the ingredient
-                Console.WriteLine("Please enter the amount of calories contained in the ingredient (e.g. 10):");
-                int calories = Convert.ToInt32(Console.ReadLine());
-                ingredientCalories = calories;
+
+                bool validInput1 = false;
+                //while loop that will keep asking the user for a valid number until they enter one
+                while (!validInput1)
+                {
+                    try
+                    {
+                        //asks for user input for the amount of calories in the ingredient
+                        Console.WriteLine("Please enter the amount of calories contained in the ingredient (e.g. 10):");
+                        int calories = Convert.ToInt32(Console.ReadLine());
+                        ingredientCalories = calories;
+
+                        //calls the checkCalories delegate
+                        checkCalories(ingredientCalories);
+
+                        //breaks out of the loop
+                        validInput1 = true;
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine();
+                        //sets background colour to red and displays an error message
+                        errorColourChanger("Please enter a valid number");
+                        createRecipe();
+                        return;
+                    }
+                }
 
                 //creates the ingredient object
                 Ingredients newIngredient = new Ingredients(ingredientName, ingredientQuantity, ingredientMeasurement, ingredientFoodGroup, ingredientCalories);
@@ -616,6 +645,17 @@ namespace ST10249266_PROG_POE.Classes
                 }
             }
         }
+        
+        public CheckCaloriesDelegate checkCalories = (calories) =>
+        {
+            if (calories > 300)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("The calories for this ingredient is higher than 300 and could be unhealthy");
+                Console.ResetColor();
+            }
+        };
+
     }
 }
 
