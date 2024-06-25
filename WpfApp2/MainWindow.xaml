@@ -19,7 +19,7 @@
 
         <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="150">
             <Button Content="Create Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555" Click="CreateRecipe_Click"/>
-            <Button Content="Search" Margin="5" Padding="10" Foreground="White" Background="#FF555555"/>
+            <Button Content="Search" Margin="5" Padding="10" Foreground="White" Background="#FF555555" Click="ViewRecipe_Click"/>
             <Button Content="Clear Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555"/>
         </StackPanel>
 

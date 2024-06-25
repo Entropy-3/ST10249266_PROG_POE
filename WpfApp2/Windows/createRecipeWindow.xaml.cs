@@ -72,7 +72,7 @@ namespace WpfApp2.Windows
                 RecipeClass recipe = new RecipeClass(recipeNameTextBox.Text, ingredientList, steps);
                 newRecipe = recipe;
                 this.Close();
-                
+
             }
             else
             {

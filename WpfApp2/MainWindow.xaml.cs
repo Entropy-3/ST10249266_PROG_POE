@@ -36,19 +36,19 @@ namespace WpfApp2
         {
             // Create and show the CreateRecipeWindow
             createRecipeWindow createRecipeWindow = new createRecipeWindow();
-            
+            // Hide the MainWindow
+            this.Hide();
 
             //copilot helped me implement this code that will allow the createRecipeWindow_closed method to be called when the window is closed
             createRecipeWindow.Closed += createRecipeWindow_Closed;
 
             createRecipeWindow.ShowDialog();
 
-            // Hide the MainWindow
-            this.Hide();
+            
         }
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
-        // When the createRecipeWindow is closed
+        //Method executes When the createRecipeWindow is closed
         private void createRecipeWindow_Closed(object sender, EventArgs e)
         {
             createRecipeWindow createRecipeWindow = (createRecipeWindow)sender;
@@ -58,6 +58,14 @@ namespace WpfApp2
                 recipeList.Add(newRecipe);
             }
             this.Show();
+        }
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        // Opens the ViewRecipeWindow
+        private void ViewRecipe_Click(object sender, RoutedEventArgs e)
+        {
+            viewRecipeWindow viewRecipeWindow = new viewRecipeWindow(recipeList);
+            viewRecipeWindow.ShowDialog();
         }
 
     }

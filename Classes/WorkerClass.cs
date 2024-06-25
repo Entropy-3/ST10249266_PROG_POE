@@ -51,7 +51,7 @@ namespace ST10249266_PROG_POE.Classes
                         Console.WriteLine("Enter the name of the recipe you want to print:");
                         printRecipeName();
                         string printname = Console.ReadLine().ToLower().Trim();
-                        printRecipe(printname);
+                        //printRecipe(printname);
                         break;
 
                     //case that contains the code to clear a recipe
@@ -151,60 +151,116 @@ namespace ST10249266_PROG_POE.Classes
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that contains the code to print a recipe
-        private void printRecipe(string printname)
+        //private void printRecipe(string printname)
+        //{
+        //    RecipeClass recipeToPrint = recipes.Find(recipe => recipe.RecipeName == printname);
+        //    //if statement that ensures that nothing is pringted when there is no recipe saved
+
+        //    if (recipeToPrint != null)
+        //    {
+        //        Console.WriteLine();
+        //        colourChanger("------------------------------------------------------");
+        //        colourChanger("INGREDIENTS:");
+
+        //        //foreach statement that prints out the ingredients(github copilot helped me with the foreach statemment)
+        //        int j = 1;
+        //        foreach (Ingredients ingredient in recipeToPrint.IngredientList)
+        //        {
+        //            //sets the colour of the text to green
+        //            Console.ForegroundColor = ConsoleColor.Green;
+
+        //            Console.WriteLine($"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} Calories: {ingredient.IngredientCalories} food group: {ingredient.IngredientFoodGroup}");
+        //            j++;
+
+        //            Console.ResetColor();
+        //        }
+        //        Console.ForegroundColor = ConsoleColor.Green;
+        //        Console.WriteLine("Total Calories: " + recipeToPrint.totalCalories());
+        //        Console.ResetColor();
+        //        colourChanger("------------------------------------------------------");
+
+        //        //sets the colour of the text to magenta
+        //        colourChanger("INSTRUCTIONS:");
+
+        //        //for statement that prints out the steps for the recipe
+        //        int no = 1;
+        //        for (int k = 0; k < noSteps; k++)
+        //        {
+        //            //sets the colour of the text to cyan
+        //            Console.ForegroundColor = ConsoleColor.Cyan;
+        //            Console.WriteLine("Step " + no + ") " + recipeToPrint.Steps1[k]);
+        //            Console.ResetColor();
+        //            no++;
+        //        }
+        //        colourChanger("------------------------------------------------------");
+        //        menuOptions();
+        //    }
+
+        //    //returns user to menu if no recipe is saved
+        //    else
+        //    {
+        //        Console.WriteLine();
+        //        //sets the colour of the text to red and displays an error message
+        //        errorColourChanger("There is currently no recipe saved");
+        //        menuOptions();
+        //    }
+        //}
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //Copilot helped me with the printRecipe method by teaching me about the += operator and the Environment.NewLine property
+        private string PrintRecipe(string printname)
         {
             RecipeClass recipeToPrint = recipes.Find(recipe => recipe.RecipeName == printname);
-            //if statement that ensures that nothing is pringted when there is no recipe saved
-
+            // If statement that ensures that nothing is printed when there is no recipe saved
             if (recipeToPrint != null)
             {
-                Console.WriteLine();
-                colourChanger("------------------------------------------------------");
-                colourChanger("INGREDIENTS:");
+                string result = "";
+                result += Environment.NewLine;
+                result += "------------------------------------------------------";
+                result += "INGREDIENTS:";
 
-                //foreach statement that prints out the ingredients(github copilot helped me with the foreach statemment)
+                // Foreach statement that prints out the ingredients
                 int j = 1;
                 foreach (Ingredients ingredient in recipeToPrint.IngredientList)
                 {
-                    //sets the colour of the text to green
-                    Console.ForegroundColor = ConsoleColor.Green;
-
-                    Console.WriteLine($"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} Calories: {ingredient.IngredientCalories} food group: {ingredient.IngredientFoodGroup}");
+                    // Sets the color of the text to green
+                    result += Environment.NewLine;
+                    result += $"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} Calories: {ingredient.IngredientCalories} food group: {ingredient.IngredientFoodGroup}";
                     j++;
-                    
-                    Console.ResetColor();
                 }
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Total Calories: " + recipeToPrint.totalCalories());
-                Console.ResetColor();
-                colourChanger("------------------------------------------------------");
+                result += Environment.NewLine;
+                result += "Total Calories: " + recipeToPrint.totalCalories();
+                result += Environment.NewLine;
+                result += "------------------------------------------------------";
 
-                //sets the colour of the text to magenta
-                colourChanger("INSTRUCTIONS:");
+                result += Environment.NewLine;
+                result += "INSTRUCTIONS:";
 
-                //for statement that prints out the steps for the recipe
+                // For statement that prints out the steps for the recipe
                 int no = 1;
                 for (int k = 0; k < noSteps; k++)
                 {
-                    //sets the colour of the text to cyan
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("Step " + no + ") " + recipeToPrint.Steps1[k]);
-                    Console.ResetColor();
+                    // Sets the color of the text to cyan
+                    result += Environment.NewLine;
+                    result += "Step " + no + ") " + recipeToPrint.Steps1[k];
                     no++;
                 }
-                colourChanger("------------------------------------------------------");
+                result += Environment.NewLine;
+                result += "------------------------------------------------------";
                 menuOptions();
-            }
 
-            //returns user to menu if no recipe is saved
+                return result;
+            }
+            // Returns user to menu if no recipe is saved
             else
             {
-                Console.WriteLine();
-                //sets the colour of the text to red and displays an error message
-                errorColourChanger("There is currently no recipe saved");
+                string errorMessage = Environment.NewLine;
+                errorMessage += "There is currently no recipe saved";
+                errorColourChanger(errorMessage);
                 menuOptions();
+                return errorMessage;
             }
         }
+
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that contains the code to scale a recipe
@@ -255,7 +311,7 @@ namespace ST10249266_PROG_POE.Classes
                                 ingredient.IngredientQuantity = tempIngredientQuantity;
 
                             }
-                            printRecipe(namescale);
+                            //printRecipe(namescale);
                             break;
 
                         //case 2 scales the recipe to 2x
@@ -276,7 +332,7 @@ namespace ST10249266_PROG_POE.Classes
                                 ingredient.IngredientMeasurement = tempIngredientMeasurement;
                                 ingredient.IngredientQuantity = tempIngredientQuantity;
                             }
-                            printRecipe(namescale);
+                            //printRecipe(namescale);
                             break;
 
                         //case 3 scales the recipe to 3x
@@ -297,7 +353,7 @@ namespace ST10249266_PROG_POE.Classes
                                 ingredient.IngredientMeasurement = tempIngredientMeasurement;
                                 ingredient.IngredientQuantity = tempIngredientQuantity;
                             }
-                            printRecipe(namescale);
+                            //printRecipe(namescale);
                             break;
 
                         //case 4 resets the recipe to original values
@@ -317,7 +373,7 @@ namespace ST10249266_PROG_POE.Classes
                                         ingredient.IngredientQuantity = ingredient.OriginalQuantity;
                                         ingredient.IngredientCalories = ingredient.OriginalCalories;
                                     }
-                                    printRecipe(namescale);
+                                    //printRecipe(namescale);
                                     break;
 
                                 case "N":
