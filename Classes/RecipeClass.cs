@@ -40,6 +40,7 @@ namespace ST10249266_PROG_POE.Classes
         public RecipeClass()
         {
         }
+
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //constructor that takes in all information required to make a recipe
         public RecipeClass(string recipeName, List<Ingredients> ingredientList, List<string> steps)
@@ -48,8 +49,6 @@ namespace ST10249266_PROG_POE.Classes
             this.ingredientList = ingredientList;
             this.Steps = steps;
         }
-
-
 
         public int totalCalories()
         {
@@ -66,7 +65,6 @@ namespace ST10249266_PROG_POE.Classes
             checkCalories(totalCalories);
             //output the total calories
             return totalCalories;
-            
         }
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
@@ -78,6 +76,52 @@ namespace ST10249266_PROG_POE.Classes
                 healthy = false;
             }
         };
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //method that will print the recipe
+        public string PrintRecipe()
+        {
+
+            string result = ""; 
+            result += Environment.NewLine;
+            result += this.recipeName;
+            result += Environment.NewLine;
+            result += "------------------------------------------------------";
+            result += Environment.NewLine;
+            result += "INGREDIENTS:";
+
+            // Foreach statement that prints out the ingredients
+            int j = 1;
+            foreach (Ingredients ingredient in this.IngredientList)
+            {
+                // Sets the color of the text to green
+                result += Environment.NewLine;
+                result += $"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} Calories: {ingredient.IngredientCalories} food group: {ingredient.IngredientFoodGroup}";
+                result += Environment.NewLine;
+                j++;
+            }
+            result += Environment.NewLine;
+            result += "Total Calories: " + this.totalCalories();
+            result += Environment.NewLine;
+            result += "------------------------------------------------------";
+
+            result += Environment.NewLine;
+            result += "INSTRUCTIONS:";
+
+            // For statement that prints out the steps for the recipe
+            int no = 1;
+            for (int k = 0; k < Steps.Count; k++)
+            {
+                // Sets the color of the text to cyan
+                result += Environment.NewLine;
+                result += "Step " + no + ") " + this.Steps1[k];
+                no++;
+            }
+            result += Environment.NewLine;
+            result += "------------------------------------------------------";
+
+            return result;
+        }
     }
 }
 

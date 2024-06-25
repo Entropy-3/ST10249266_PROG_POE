@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace ST10249266_PROG_POE.Classes
 {
-    internal class WorkerClass
+    public class WorkerClass
     {
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //variables that will be used in the class
@@ -103,7 +103,7 @@ namespace ST10249266_PROG_POE.Classes
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         //method that contains the code to clear a recipe
-        private void clearRecipe(string nameclear)
+        public void clearRecipe(string nameclear)
         {
             RecipeClass recipeToClear = recipes.Find(recipe => recipe.RecipeName == nameclear);
             if (recipeToClear != null)
@@ -149,117 +149,8 @@ namespace ST10249266_PROG_POE.Classes
             }
         }
 
-        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
-        //method that contains the code to print a recipe
-        //private void printRecipe(string printname)
-        //{
-        //    RecipeClass recipeToPrint = recipes.Find(recipe => recipe.RecipeName == printname);
-        //    //if statement that ensures that nothing is pringted when there is no recipe saved
-
-        //    if (recipeToPrint != null)
-        //    {
-        //        Console.WriteLine();
-        //        colourChanger("------------------------------------------------------");
-        //        colourChanger("INGREDIENTS:");
-
-        //        //foreach statement that prints out the ingredients(github copilot helped me with the foreach statemment)
-        //        int j = 1;
-        //        foreach (Ingredients ingredient in recipeToPrint.IngredientList)
-        //        {
-        //            //sets the colour of the text to green
-        //            Console.ForegroundColor = ConsoleColor.Green;
-
-        //            Console.WriteLine($"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} Calories: {ingredient.IngredientCalories} food group: {ingredient.IngredientFoodGroup}");
-        //            j++;
-
-        //            Console.ResetColor();
-        //        }
-        //        Console.ForegroundColor = ConsoleColor.Green;
-        //        Console.WriteLine("Total Calories: " + recipeToPrint.totalCalories());
-        //        Console.ResetColor();
-        //        colourChanger("------------------------------------------------------");
-
-        //        //sets the colour of the text to magenta
-        //        colourChanger("INSTRUCTIONS:");
-
-        //        //for statement that prints out the steps for the recipe
-        //        int no = 1;
-        //        for (int k = 0; k < noSteps; k++)
-        //        {
-        //            //sets the colour of the text to cyan
-        //            Console.ForegroundColor = ConsoleColor.Cyan;
-        //            Console.WriteLine("Step " + no + ") " + recipeToPrint.Steps1[k]);
-        //            Console.ResetColor();
-        //            no++;
-        //        }
-        //        colourChanger("------------------------------------------------------");
-        //        menuOptions();
-        //    }
-
-        //    //returns user to menu if no recipe is saved
-        //    else
-        //    {
-        //        Console.WriteLine();
-        //        //sets the colour of the text to red and displays an error message
-        //        errorColourChanger("There is currently no recipe saved");
-        //        menuOptions();
-        //    }
-        //}
-        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
-        //Copilot helped me with the printRecipe method by teaching me about the += operator and the Environment.NewLine property
-        private string PrintRecipe(string printname)
-        {
-            RecipeClass recipeToPrint = recipes.Find(recipe => recipe.RecipeName == printname);
-            // If statement that ensures that nothing is printed when there is no recipe saved
-            if (recipeToPrint != null)
-            {
-                string result = "";
-                result += Environment.NewLine;
-                result += "------------------------------------------------------";
-                result += "INGREDIENTS:";
-
-                // Foreach statement that prints out the ingredients
-                int j = 1;
-                foreach (Ingredients ingredient in recipeToPrint.IngredientList)
-                {
-                    // Sets the color of the text to green
-                    result += Environment.NewLine;
-                    result += $"{j}) {ingredient.IngredientQuantity} {ingredient.IngredientMeasurement} of {ingredient.IngredientName} Calories: {ingredient.IngredientCalories} food group: {ingredient.IngredientFoodGroup}";
-                    j++;
-                }
-                result += Environment.NewLine;
-                result += "Total Calories: " + recipeToPrint.totalCalories();
-                result += Environment.NewLine;
-                result += "------------------------------------------------------";
-
-                result += Environment.NewLine;
-                result += "INSTRUCTIONS:";
-
-                // For statement that prints out the steps for the recipe
-                int no = 1;
-                for (int k = 0; k < noSteps; k++)
-                {
-                    // Sets the color of the text to cyan
-                    result += Environment.NewLine;
-                    result += "Step " + no + ") " + recipeToPrint.Steps1[k];
-                    no++;
-                }
-                result += Environment.NewLine;
-                result += "------------------------------------------------------";
-                menuOptions();
-
-                return result;
-            }
-            // Returns user to menu if no recipe is saved
-            else
-            {
-                string errorMessage = Environment.NewLine;
-                errorMessage += "There is currently no recipe saved";
-                errorColourChanger(errorMessage);
-                menuOptions();
-                return errorMessage;
-            }
-        }
+      
+        
 
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\

@@ -20,12 +20,13 @@
         <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="150">
             <Button Content="Create Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555" Click="CreateRecipe_Click"/>
             <Button Content="Search" Margin="5" Padding="10" Foreground="White" Background="#FF555555" Click="ViewRecipe_Click"/>
+            <Button Content="Scale Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555"/>
             <Button Content="Clear Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555"/>
         </StackPanel>
 
         <Border Grid.Column="1" Background="#FF444444" CornerRadius="10" Margin="10" Padding="10">
             <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White">
-                <Run Text="This application allows you to create, search, and manage your recipes easily. Use the 'Create Recipe' button to add a new recipe, 'Search' to find existing recipes, and 'Clear Recipe' to remove a recipe from your collection."/>
+                <Run Text="This application allows you to create, search, and manage your recipes easily. Use the 'Create Recipe' button to add a new recipe, 'Search' to find existing recipes, 'Scale Recipe' to scale an existing recipe and 'Clear Recipe' to remove a recipe from your collection."/>
             </TextBlock>
         </Border>
     </Grid>
