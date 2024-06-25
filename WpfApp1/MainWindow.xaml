@@ -7,8 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Background="#FF333333"
-        
-        <!--stets the MinHeight for the window-->
         MinHeight="500"
         MinWidth="820">
     

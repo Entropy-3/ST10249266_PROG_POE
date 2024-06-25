@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp1.CreateRecipeWindows;
+
 
 namespace WpfApp1.Windows
 {
@@ -22,6 +24,14 @@ namespace WpfApp1.Windows
         public createRecipeWindow()
         {
             InitializeComponent();
+        }
+        private void AddIngredient_Click(object sender, RoutedEventArgs e)
+        {
+            // Create and show the CreateRecipeWindow
+            addIngredientWindow addIngredientWindow = new addIngredientWindow();
+            addIngredientWindow.Show();
+
+            
         }
     }
 }
