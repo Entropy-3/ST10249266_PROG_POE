@@ -11,7 +11,6 @@ namespace ST10249266_PROG_POE.Classes
         private const int TablespoonsInCup = 16;
         private const int TeaspoonsInCup = 48;
         private const int TeasponnsInTablespoon = 3;
-        
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         // Method to convert the ingredient measurement to the smallest unit of measurement
@@ -28,6 +27,7 @@ namespace ST10249266_PROG_POE.Classes
                         ingredientQuantity /= TablespoonsInCup;
                     }
                     break;
+
                 case "tablespoons":
                     if (ingredientQuantity >= TablespoonsInCup)
                     {
@@ -36,7 +36,7 @@ namespace ST10249266_PROG_POE.Classes
                     }
                     break;
 
-                    //-------------------------------------------------
+                //-------------------------------------------------
                 case "teaspoon":
                     if (ingredientQuantity >= TeaspoonsInCup)
                     {
@@ -49,6 +49,7 @@ namespace ST10249266_PROG_POE.Classes
                         ingredientQuantity /= TeasponnsInTablespoon;
                     }
                     break;
+
                 case "teaspoons":
                     if (ingredientQuantity >= TeaspoonsInCup)
                     {
@@ -70,6 +71,7 @@ namespace ST10249266_PROG_POE.Classes
                         ingredientQuantity *= TablespoonsInCup;
                     }
                     break;
+
                 case "cups":
                     if (ingredientQuantity > 1)
                     {
@@ -86,4 +88,5 @@ namespace ST10249266_PROG_POE.Classes
         }
     }
 }
+
 //-------------------------------------EOF----------------------------------------\\
