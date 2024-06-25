@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ST10249266_PROG_POE.Classes
 {
-    internal class UnitConverter
+    public class UnitConverter
     {
         private const int TablespoonsInCup = 16;
         private const int TeaspoonsInCup = 48;
@@ -82,7 +82,7 @@ namespace ST10249266_PROG_POE.Classes
 
                 default:
                     worker.errorColourChanger("please enter only tablespoon, teaspoon or cup");
-                    worker.createRecipe();
+                    
                     break;
             }
         }

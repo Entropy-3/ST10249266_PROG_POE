@@ -34,8 +34,23 @@ namespace ST10249266_PROG_POE.Classes
         public List<string> Steps1 { get => Steps; set => Steps = value; }
 
         public string RecipeName { get => recipeName; set => recipeName = value; }
-       
+
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //default constructor
+        public RecipeClass()
+        {
+        }
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //constructor that takes in all information required to make a recipe
+        public RecipeClass(string recipeName, List<Ingredients> ingredientList, List<string> steps)
+        {
+            this.recipeName = recipeName;
+            this.ingredientList = ingredientList;
+            this.Steps = steps;
+        }
+
+
+
         public int totalCalories()
         {
             //variable that will hold the total calories
@@ -57,11 +72,10 @@ namespace ST10249266_PROG_POE.Classes
         //--------------------------------------------------------------------------------------------------------------------------------------------------\\
         public CheckCaloriesDelegate checkCalories = (calories) =>
         {
+            bool healthy = true;
             if (calories >= 300)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("The total calories for this Recipe are higher than 300 and could be unhealthy");
-                Console.ResetColor();
+                healthy = false;
             }
         };
     }

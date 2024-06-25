@@ -13,19 +13,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfApp1.CreateRecipeWindows
+namespace WpfApp2.CreateRecipeWindows
 {
     /// <summary>
     /// Interaction logic for addIngredientWindow.xaml
     /// </summary>
     public partial class addIngredientWindow : Window
     {
+        public Ingredients NewIngredient { get; private set; }
         public addIngredientWindow()
         {
             InitializeComponent();
         }
-        public Ingredients NewIngredient { get; private set; }
-
+        
 
         private void submit_Click(object sender, RoutedEventArgs e)
         {
@@ -42,11 +42,17 @@ namespace WpfApp1.CreateRecipeWindows
                 MessageBox.Show("Please enter a valid number in the quantity and calories textbox");
                 return;
             }
-            
-            // Create a new ingredient object using information from the textboxes
-            Ingredients newIngredient = new Ingredients(nameTextBox.Text, float.Parse(quantityTextBox.Text), measurementTextBox.Text, foodGroupComboBox.SelectedItem.ToString(), int.Parse(caloriesTextBox.Text));
 
-            this.DialogResult = true;
+            //allows for the unit converter to be used
+            string measurement = measurementTextBox.Text;
+            UnitConverter.scaler(ref measurement, ref quantity);
+
+            //makes use of the calory delegate
+            
+
+            // Create a new ingredient object using information from the textboxes
+            Ingredients newIngredient = new Ingredients(nameTextBox.Text, float.Parse(quantityTextBox.Text), measurement, foodGroupComboBox.SelectedItem.ToString(), int.Parse(caloriesTextBox.Text));
+            NewIngredient = newIngredient;
             this.Close();
         }
     }

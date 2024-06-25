@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ST10249266_PROG_POE.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,17 +22,33 @@ namespace WpfApp1.Windows
     /// </summary>
     public partial class createRecipeWindow : Window
     {
+        
         public createRecipeWindow()
         {
             InitializeComponent();
+
         }
+
+        //List<Ingredients> ingredientList = new List<Ingredients>();
+
         private void AddIngredient_Click(object sender, RoutedEventArgs e)
         {
-            // Create and show the CreateRecipeWindow
-            addIngredientWindow addIngredientWindow = new addIngredientWindow();
-            addIngredientWindow.Show();
+            
+            addIngredientWindow addIngredientWin = new addIngredientWindow();
+            var dialogResult = addIngredientWin.ShowDialog(); // ShowDialog makes the window modal and waits for it to close
 
+            if (dialogResult.HasValue && dialogResult.Value)
+            {
+                Ingredients newIngredient = addIngredientWin.NewIngredient;
+                // Now you have the newIngredient object, and you can add it to your list or process it as needed
+                //ingredientList.Add(newIngredient);
+            }
+        }
+
+        private void SubmitRecipe_Click(object sender, RoutedEventArgs e)
+        {
             
         }
+
     }
 }
