@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        Background="#FF333333">
+        Background="#FF333333"
+        
+        <!--stets the MinHeight for the window-->
+        MinHeight="500"
+        MinWidth="820">
+    
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,7 +20,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="150">
-            <Button Content="Create Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555"/>
+            <Button Content="Create Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555" Click="CreateRecipe_Click"/>
             <Button Content="Search" Margin="5" Padding="10" Foreground="White" Background="#FF555555"/>
             <Button Content="Clear Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555"/>
         </StackPanel>
