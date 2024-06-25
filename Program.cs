@@ -26,7 +26,7 @@ namespace ST10249266_PROG_POE
             WorkerClass worker = new WorkerClass();
 
             //runs the startHere method
-            worker.menuOptions();
+            //worker.menuOptions();
         }
     }
 }

@@ -51,7 +51,7 @@ namespace WpfApp2.CreateRecipeWindows
             
 
             // Create a new ingredient object using information from the textboxes
-            Ingredients newIngredient = new Ingredients(nameTextBox.Text, float.Parse(quantityTextBox.Text), measurement, foodGroupComboBox.Text, int.Parse(caloriesTextBox.Text));
+            Ingredients newIngredient = new Ingredients(nameTextBox.Text, quantity, measurement, foodGroupComboBox.Text, int.Parse(caloriesTextBox.Text));
             NewIngredient = newIngredient;
             this.Close();
         }

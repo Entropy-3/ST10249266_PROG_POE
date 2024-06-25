@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Background="#FF333333"
-        MinHeight="500"
+        MinHeight="520"
         MinWidth="820">
 
 

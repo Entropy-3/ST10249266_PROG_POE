@@ -81,8 +81,7 @@ namespace ST10249266_PROG_POE.Classes
         //method that will print the recipe
         public string PrintRecipe()
         {
-
-            string result = ""; 
+            string result = "";
             result += Environment.NewLine;
             result += this.recipeName;
             result += Environment.NewLine;
@@ -122,6 +121,124 @@ namespace ST10249266_PROG_POE.Classes
 
             return result;
         }
+
+        //private void scaleRecipe(string namescale)
+        //{ 
+        //    string recipeToScale = namescale;
+            
+
+        //    //if statement that ensures that there is a recipe saved
+        //    if (recipeToScale != null)
+        //    {
+        //        //converts user input from a string to an integer
+        //        int choice = Convert.ToInt32(Console.ReadLine());
+
+        //        //try catch that handles if a user inputs a null value
+
+        //        switch (choice)
+        //        {
+        //            //case 1 scales the recipe to 0.5x
+        //            case 1:
+        //                //foreach statement that scales the recipe to 0.5x
+        //                foreach (Ingredients ingredient in recipeToScale.IngredientList)
+        //                {
+        //                    ingredient.IngredientQuantity = ingredient.IngredientQuantity / 2;
+        //                    ingredient.IngredientCalories = ingredient.IngredientCalories / 2;
+
+        //                    //calls the scaler method from the unit converter class
+        //                    //temp methods allow for ingredient object to be a ref
+        //                    float tempIngredientQuantity = ingredient.IngredientQuantity;
+        //                    string tempIngredientMeasurement = ingredient.IngredientMeasurement;
+
+        //                    UnitConverter.scaler(ref tempIngredientMeasurement, ref tempIngredientQuantity);
+
+        //                    ingredient.IngredientMeasurement = tempIngredientMeasurement;
+        //                    ingredient.IngredientQuantity = tempIngredientQuantity;
+        //                }
+        //                //printRecipe(namescale);
+        //                break;
+
+        //            //case 2 scales the recipe to 2x
+        //            case 2:
+        //                //foreach statement that scales the recipe to 2x
+        //                foreach (Ingredients ingredient in recipeToScale.IngredientList)
+        //                {
+        //                    ingredient.IngredientQuantity = ingredient.IngredientQuantity * 2;
+        //                    ingredient.IngredientCalories = ingredient.IngredientCalories * 2;
+
+        //                    //calls the scaler method from the unit converter class
+        //                    //temp methods allow for ingredient object to be a ref
+        //                    float tempIngredientQuantity = ingredient.IngredientQuantity;
+        //                    string tempIngredientMeasurement = ingredient.IngredientMeasurement;
+
+        //                    UnitConverter.scaler(ref tempIngredientMeasurement, ref tempIngredientQuantity);
+
+        //                    ingredient.IngredientMeasurement = tempIngredientMeasurement;
+        //                    ingredient.IngredientQuantity = tempIngredientQuantity;
+        //                }
+        //                //printRecipe(namescale);
+        //                break;
+
+        //            //case 3 scales the recipe to 3x
+        //            case 3:
+        //                //foreach statement that scales the recipe to 3x
+        //                foreach (Ingredients ingredient in recipeToScale.IngredientList)
+        //                {
+        //                    ingredient.IngredientQuantity = ingredient.IngredientQuantity * 3;
+        //                    ingredient.IngredientCalories = ingredient.IngredientCalories * 3;
+
+        //                    //calls the scaler method from the unit converter class
+        //                    //temp methods allow for ingredient object to be a ref
+        //                    float tempIngredientQuantity = ingredient.IngredientQuantity;
+        //                    string tempIngredientMeasurement = ingredient.IngredientMeasurement;
+
+        //                    UnitConverter.scaler(ref tempIngredientMeasurement, ref tempIngredientQuantity);
+
+        //                    ingredient.IngredientMeasurement = tempIngredientMeasurement;
+        //                    ingredient.IngredientQuantity = tempIngredientQuantity;
+        //                }
+        //                //printRecipe(namescale);
+        //                break;
+
+        //            //case 4 resets the recipe to original values
+        //            case 4:
+
+        //                Console.WriteLine();
+        //                Console.WriteLine("are you sure you want to reset the recipe to its original values? (y/n)");
+        //                string answer1 = Console.ReadLine().ToUpper();
+        //                switch (answer1)
+        //                {
+        //                    case "Y":
+
+        //                        //foreach statement that overrides the scaled recipe with the original values
+        //                        foreach (Ingredients ingredient in recipeToScale.IngredientList)
+        //                        {
+        //                            ingredient.IngredientMeasurement = ingredient.OriginalMeasurement;
+        //                            ingredient.IngredientQuantity = ingredient.OriginalQuantity;
+        //                            ingredient.IngredientCalories = ingredient.OriginalCalories;
+        //                        }
+        //                        //printRecipe(namescale);
+        //                        break;
+
+        //                    case "N":
+        //                        //takes user back to scale recipe menu
+        //                        scaleRecipe(namescale);
+        //                        break;
+
+        //                    default:
+        //                        Console.WriteLine();
+        //                        //sets background colour to red and displays an error message
+        //                        Console.ForegroundColor = ConsoleColor.Red;
+        //                        Console.WriteLine("Invalid option, please choose a y or n:");
+        //                        Console.ResetColor();
+        //                        scaleRecipe(namescale);
+        //                        break;
+        //                }
+
+        //                break;
+        //        }
+        //    }
+        //}
     }
 }
 
