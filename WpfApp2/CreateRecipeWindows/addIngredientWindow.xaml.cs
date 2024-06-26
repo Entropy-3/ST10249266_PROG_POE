@@ -26,7 +26,8 @@ namespace WpfApp2.CreateRecipeWindows
             InitializeComponent();
         }
         
-
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //Method that will be called when the submit button is clicked
         private void submit_Click(object sender, RoutedEventArgs e)
         {
             //validation to see if textboxes are empty
@@ -47,9 +48,6 @@ namespace WpfApp2.CreateRecipeWindows
             string measurement = measurementTextBox.Text;
             UnitConverter.scaler(ref measurement, ref quantity);
 
-            //makes use of the calory delegate
-            
-
             // Create a new ingredient object using information from the textboxes
             Ingredients newIngredient = new Ingredients(nameTextBox.Text, quantity, measurement, foodGroupComboBox.Text, int.Parse(caloriesTextBox.Text));
             NewIngredient = newIngredient;
@@ -57,3 +55,4 @@ namespace WpfApp2.CreateRecipeWindows
         }
     }
 }
+//---------------------------------------------------------EOF--------------------------------------------------------------------------\\

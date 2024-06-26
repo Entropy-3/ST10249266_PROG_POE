@@ -64,7 +64,8 @@ namespace WpfApp2.Windows
             stepTextBox.Text = "";
         }
 
-
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //method that will submit the recipe
         private void SubmitRecipe_Click(object sender, RoutedEventArgs e)
         {
             if (steps.Count > 0 && recipeNameTextBox != null && ingredientList.Count > 0)

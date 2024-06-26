@@ -38,6 +38,8 @@ namespace WpfApp2.Windows
             }
         }
 
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //Method that clears the recipe based on the recipe name
         private void ClearRecipeButton_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = RecipeNameTXT.Text;
@@ -48,12 +50,13 @@ namespace WpfApp2.Windows
                 return;
             }
 
-            // Confirmation dialog box
+            // prompt the user to confirm the deletion of the recipe
             MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete the recipe '{recipeName}'?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 // Remove the recipe from the list
                 printRecipeList3.Remove(recipeOBJ);
+
                 MessageBox.Show($"Recipe '{recipeName}' has been successfully deleted.");
                 allRecipeOut.Text = "";
                 int no = 1;
@@ -73,3 +76,4 @@ namespace WpfApp2.Windows
         }
     }
 }
+//---------------------------------------------------------EOF--------------------------------------------------------------------------\\

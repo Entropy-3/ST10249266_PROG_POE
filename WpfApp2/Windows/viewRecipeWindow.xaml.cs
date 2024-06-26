@@ -37,7 +37,8 @@ namespace WpfApp2.Windows
             }
         }
 
-
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //Method that prints the recipe based on the recipe name
         private void nameSubmit_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = RecipeNameTXT.Text;
@@ -55,5 +56,60 @@ namespace WpfApp2.Windows
         {
             this.Close();
         }
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //Method that prints the recipe based on food group filtering
+        private void foodGroupSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedFoodGroup = FoodGroupComboBox.Text;
+            
+            string recipesOutput = "";
+
+            //Copilot helped me implement this code that will filter the recipes based on the selected food group
+            var filteredRecipes = printRecipeList.Where(recipe => recipe.IngredientList.Any(ingredient => ingredient.IngredientFoodGroup == selectedFoodGroup));
+
+            if (!filteredRecipes.Any())
+            {
+                RecipeOut.Text = "No recipes found for the selected food group.";
+                return;
+            }
+
+            //foreach that will go through the filtered recipes and use the PrintRecipe method to print the recipe to the TextBlock
+            foreach (RecipeClass recipe in filteredRecipes)
+            {
+                recipesOutput += recipe.PrintRecipe() + Environment.NewLine;
+            }
+
+            // Display the recipes in the RecipeOut TextBlock
+            RecipeOut.Text = recipesOutput;
+        }
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //Method that prints the recipe based on the total calories
+        private void caloriesSubmit_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedCalories = int.Parse(CaloriesTextBox.Text);
+            
+            string recipesOutput = "";
+
+            //Copilot helped me implement this code that will filter the recipes based on the total calories
+            var filteredRecipes = printRecipeList.Where(recipe => recipe.totalCalories() <= selectedCalories);
+
+            if (!filteredRecipes.Any())
+            {
+                RecipeOut.Text = "No recipes found for the selected calories.";
+                return;
+            }
+
+            //foreach that will go through the filtered recipes and use the PrintRecipe method to print the recipe to the TextBlock
+            foreach (RecipeClass recipe in filteredRecipes)
+            {
+                recipesOutput += recipe.PrintRecipe() + Environment.NewLine;
+            }
+
+            // Display the recipes in the RecipeOut TextBlock
+            RecipeOut.Text = recipesOutput;
+        }
     }
 }
+//---------------------------------------------------------EOF--------------------------------------------------------------------------\\

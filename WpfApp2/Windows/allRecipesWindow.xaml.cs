@@ -25,6 +25,8 @@ namespace WpfApp2.Windows
             printRecipeList1 = recipes;
         }
 
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //Method that will print all the recipes to the TextBlock
         private void ViewRecipesButton_Click(object sender, RoutedEventArgs e)
         {
             //foreach that will go through the recipe list and use the PrintRecipe method to print the recipe to the TextBlock
@@ -40,3 +42,4 @@ namespace WpfApp2.Windows
         }
     }
 }
+//---------------------------------------------------------EOF--------------------------------------------------------------------------\\

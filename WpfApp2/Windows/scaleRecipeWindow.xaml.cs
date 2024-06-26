@@ -32,7 +32,8 @@ namespace WpfApp2.Windows
                 no++;
             }
         }
-
+    //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+    //Method scales the recipe by 0.5x
         private void scaleHalf_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = scaleFactorTextBox.Text;
@@ -46,6 +47,8 @@ namespace WpfApp2.Windows
             RecipeOut.Text = recipeOBJ.PrintRecipe();
         }
 
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //Method scales the recipe by 2x
         private void scaleDouble_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = scaleFactorTextBox.Text;
@@ -59,6 +62,8 @@ namespace WpfApp2.Windows
             RecipeOut.Text = recipeOBJ.PrintRecipe();
         }
 
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //Method scales the recipe by 3x
         private void scaleTriple_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = scaleFactorTextBox.Text;
@@ -72,6 +77,9 @@ namespace WpfApp2.Windows
             RecipeOut.Text = recipeOBJ.PrintRecipe();
 
         }
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //Method resets the recipe to its original values
         private void resetRecipe_Click(object sender, RoutedEventArgs e)
         {
             string recipeName = scaleFactorTextBox.Text;
@@ -99,3 +107,4 @@ namespace WpfApp2.Windows
         
     }
 }
+//---------------------------------------------------------EOF--------------------------------------------------------------------------\\
