@@ -17,7 +17,7 @@ namespace ST10249266_PROG_POE.Classes
         //copilot helped me understand ref and what it does
         public static void scaler(ref string ingredientMeasurement, ref float ingredientQuantity)
         {
-            WorkerClass worker = new WorkerClass();
+            
             switch (ingredientMeasurement)
             {
                 case "tablespoon":

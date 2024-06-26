@@ -7,7 +7,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using static ST10249266_PROG_POE.Classes.WorkerClass;
+
 
 namespace ST10249266_PROG_POE.Classes
 {

@@ -93,7 +93,7 @@ namespace WpfApp2.Windows
             string recipesOutput = "";
 
             //Copilot helped me implement this code that will filter the recipes based on the total calories
-            var filteredRecipes = printRecipeList.Where(recipe => recipe.totalCalories() <= selectedCalories);
+            var filteredRecipes = printRecipeList.Where(recipe => recipe.totalCalories() >= selectedCalories);
 
             if (!filteredRecipes.Any())
             {
