@@ -67,7 +67,14 @@ namespace WpfApp2
             viewRecipeWindow viewRecipeWindow = new viewRecipeWindow(recipeList);
             viewRecipeWindow.ShowDialog();
         }
-
+        
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        // Opens the ViewRecipeWindow
+        private void ViewAll_Click(object sender, RoutedEventArgs e)
+        {
+            allRecipesWindow allRecipesWindow = new allRecipesWindow(recipeList);
+            allRecipesWindow.ShowDialog();
+        }
     }
 }
 //-------------------------------------------------------------EOF-------------------------------------------------------------------------------------\\
