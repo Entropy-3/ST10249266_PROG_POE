@@ -47,9 +47,8 @@ namespace WpfApp2.Windows
                 MessageBox.Show("Recipe not found");
                 return;
             }
-
             RecipeOut.Text = recipeOBJ.PrintRecipe();
-
+            
         }
 
         private void back_Click(object sender, RoutedEventArgs e)

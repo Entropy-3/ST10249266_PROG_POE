@@ -122,117 +122,51 @@ namespace ST10249266_PROG_POE.Classes
             return result;
         }
 
-        private void scaleRecipe(string namescale, int choice)
+        //--------------------------------------------------------------------------------------------------------------------------------------------------\\
+        //method that scales the recipe by 0.5x, 2x, 3x or resets the recipe to its original values
+        public void scaleRecipe(int choice)
         {
-            string recipeToScale = namescale;
-
-            //if statement that ensures that there is a recipe saved
-            if (recipeToScale != null)
+            if (this.recipeName != null)
             {
                 switch (choice)
                 {
-                    //case 1 scales the recipe to 0.5x
-                    case 1:
-                        //foreach statement that scales the recipe to 0.5x
-                        foreach (Ingredients ingredient in recipeToScale.IngredientList)
+                    case 1: // Scales the recipe to 0.5x
+                        foreach (Ingredients ingredient in this.IngredientList)
                         {
-                            ingredient.IngredientQuantity = ingredient.IngredientQuantity / 2;
-                            ingredient.IngredientCalories = ingredient.IngredientCalories / 2;
-
-                            //calls the scaler method from the unit converter class
-                            //temp methods allow for ingredient object to be a ref
-                            float tempIngredientQuantity = ingredient.IngredientQuantity;
-                            string tempIngredientMeasurement = ingredient.IngredientMeasurement;
-
-                            UnitConverter.scaler(ref tempIngredientMeasurement, ref tempIngredientQuantity);
-
-                            ingredient.IngredientMeasurement = tempIngredientMeasurement;
-                            ingredient.IngredientQuantity = tempIngredientQuantity;
+                            //copilot helped me understand the *= operator
+                            ingredient.IngredientQuantity /= 2;
+                            ingredient.IngredientCalories /= 2;
                         }
-                        //printRecipe(namescale);
                         break;
 
-                    //case 2 scales the recipe to 2x
-                    case 2:
-                        //foreach statement that scales the recipe to 2x
-                        foreach (Ingredients ingredient in recipeToScale.IngredientList)
+                    case 2: // Scales the recipe to 2x
+                        foreach (Ingredients ingredient in this.IngredientList)
                         {
-                            ingredient.IngredientQuantity = ingredient.IngredientQuantity * 2;
-                            ingredient.IngredientCalories = ingredient.IngredientCalories * 2;
-
-                            //calls the scaler method from the unit converter class
-                            //temp methods allow for ingredient object to be a ref
-                            float tempIngredientQuantity = ingredient.IngredientQuantity;
-                            string tempIngredientMeasurement = ingredient.IngredientMeasurement;
-
-                            UnitConverter.scaler(ref tempIngredientMeasurement, ref tempIngredientQuantity);
-
-                            ingredient.IngredientMeasurement = tempIngredientMeasurement;
-                            ingredient.IngredientQuantity = tempIngredientQuantity;
+                            ingredient.IngredientQuantity *= 2;
+                            ingredient.IngredientCalories *= 2;
                         }
-                        //printRecipe(namescale);
                         break;
 
-                    //case 3 scales the recipe to 3x
-                    case 3:
-                        //foreach statement that scales the recipe to 3x
-                        foreach (Ingredients ingredient in recipeToScale.IngredientList)
+                    case 3: // Scales the recipe to 3x
+                        foreach (Ingredients ingredient in this.IngredientList)
                         {
-                            ingredient.IngredientQuantity = ingredient.IngredientQuantity * 3;
-                            ingredient.IngredientCalories = ingredient.IngredientCalories * 3;
-
-                            //calls the scaler method from the unit converter class
-                            //temp methods allow for ingredient object to be a ref
-                            float tempIngredientQuantity = ingredient.IngredientQuantity;
-                            string tempIngredientMeasurement = ingredient.IngredientMeasurement;
-
-                            UnitConverter.scaler(ref tempIngredientMeasurement, ref tempIngredientQuantity);
-
-                            ingredient.IngredientMeasurement = tempIngredientMeasurement;
-                            ingredient.IngredientQuantity = tempIngredientQuantity;
+                            ingredient.IngredientQuantity *= 3;
+                            ingredient.IngredientCalories *= 3;
                         }
-                        //printRecipe(namescale);
                         break;
 
-                    //case 4 resets the recipe to original values
-                    case 4:
-
-                        Console.WriteLine();
-                        Console.WriteLine("are you sure you want to reset the recipe to its original values? (y/n)");
-                        string answer1 = Console.ReadLine().ToUpper();
-                        switch (answer1)
+                    case 4: // Resets the recipe to its original values
+                        foreach (Ingredients ingredient in this.IngredientList)
                         {
-                            case "Y":
-
-                                //foreach statement that overrides the scaled recipe with the original values
-                                foreach (Ingredients ingredient in recipeToScale.IngredientList)
-                                {
-                                    ingredient.IngredientMeasurement = ingredient.OriginalMeasurement;
-                                    ingredient.IngredientQuantity = ingredient.OriginalQuantity;
-                                    ingredient.IngredientCalories = ingredient.OriginalCalories;
-                                }
-                                //printRecipe(namescale);
-                                break;
-
-                            case "N":
-                                //takes user back to scale recipe menu
-                                scaleRecipe(namescale);
-                                break;
-
-                            default:
-                                Console.WriteLine();
-                                //sets background colour to red and displays an error message
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Invalid option, please choose a y or n:");
-                                Console.ResetColor();
-                                scaleRecipe(namescale);
-                                break;
+                            ingredient.IngredientQuantity = ingredient.OriginalQuantity;
+                            ingredient.IngredientMeasurement = ingredient.OriginalMeasurement;
+                            ingredient.IngredientCalories = ingredient.OriginalCalories;
                         }
-
                         break;
                 }
             }
         }
+
     }
 }
 

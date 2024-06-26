@@ -42,8 +42,9 @@
                 </StackPanel>
             </Border>
             <Border Grid.Row="3" Background="#FF444444" CornerRadius="5" Margin="10">
-                <StackPanel Margin="10">
-                    <Button Content="Back" Margin="5,0,0,0" x:Name="back" Width="200" Click="back_Click"/>
+                <StackPanel Margin="10" Orientation="Vertical">
+                    <Button Content="Reset Recipe" Margin="5" x:Name="resetRecipe" Width="200" Click="resetRecipe_Click"/>
+                    <Button Content="Back" Margin="5,5,0,0" x:Name="back" Width="200" Click="back_Click"/>
                 </StackPanel>
             </Border>
         </Grid>
