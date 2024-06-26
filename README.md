@@ -74,6 +74,18 @@ CHANGE LOG (V2.0)
 <br/>
 ----------------------------------------------
 <br/>
+CHANGE LOG (V2.0)
+<br/>
+----------------------------------------------
+<br/>
+~Changed from console application to GUI<br/>
+~Added a way to see all recipes at once<br/>
+~Added more sorting and filtering to allow for a recipe to be found based on food group or calories<br/>
+~Removed unneccessary methods to improve code efficiency<br/>
+<br/>
+<br/>
+----------------------------------------------
+<br/>
 REFERENCES:
 <br/>
 ----------------------------------------------
@@ -84,3 +96,6 @@ REFERENCES:
 ~https://www.youtube.com/watch?v=bBDmL0U-4U8<br/>
 ~https://www.gosh.nhs.uk/conditions-and-treatments/general-health-advice-children/eat-smart/food-science/food-group-fun/<br/>
 ~https://www.youtube.com/watch?v=uAhVpw8zzm4<br/>
+~https://youtu.be/4DZZadT2RPs?si=sgOhN9lanzWgOWep<br/>
+~https://www.c-sharpcorner.com/blogs/how-to-pass-value-from-one-form-to-another-form-in-wpf1<br/>
+~https://www.youtube.com/watch?v=gu_SmFnD-pA<br/>
