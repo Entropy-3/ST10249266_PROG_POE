@@ -81,6 +81,12 @@ namespace WpfApp2
             scaleRecipeWindow scaleRecipeWindow = new scaleRecipeWindow(recipeList);
             scaleRecipeWindow.ShowDialog();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            clearRecipeWindow clearRecipeWindow = new clearRecipeWindow(recipeList);
+            clearRecipeWindow.ShowDialog();
+        }
     }
 }
 //-------------------------------------------------------------EOF-------------------------------------------------------------------------------------\\

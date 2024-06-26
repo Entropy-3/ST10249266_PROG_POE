@@ -22,7 +22,7 @@
             <Button Content="Search" Margin="5" Padding="10" Foreground="White" Background="#FF555555" Click="ViewRecipe_Click"/>
             <Button Content="View All" Margin="5" Padding="10" Foreground="White" Background="#FF555555" Click="ViewAll_Click"/>
             <Button Content="Scale Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555" Click="Button_Click"/>
-            <Button Content="Clear Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555"/>
+            <Button Content="Clear Recipe" Margin="5" Padding="10" Foreground="White" Background="#FF555555" Click="Button_Click_1"/>
         </StackPanel>
 
         <Border Grid.Column="1" Background="#FF444444" CornerRadius="10" Margin="10" Padding="10">
