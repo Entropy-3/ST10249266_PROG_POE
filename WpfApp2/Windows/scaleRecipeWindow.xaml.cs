@@ -15,40 +15,36 @@ using System.Windows.Shapes;
 
 namespace WpfApp2.Windows
 {
-    /// <summary>
-    /// Interaction logic for viewRecipeWindow.xaml
-    /// </summary>
-    public partial class viewRecipeWindow : Window
+    public partial class scaleRecipeWindow : Window
     {
-        public List<RecipeClass> printRecipeList;
-
-        public viewRecipeWindow(List<RecipeClass> recipes)
+        public List<RecipeClass> printRecipeList2;
+        public scaleRecipeWindow(List<RecipeClass> recipes)
         {
             InitializeComponent();
-            printRecipeList = recipes;
+            printRecipeList2 = recipes;
 
             RecipeNameOut.Text = "";
             int no = 1;
             // Foreach loop that will go through the recipe list and print the recipe name to the TextBlock
-            foreach (RecipeClass recipe in printRecipeList)
+            foreach (RecipeClass recipe in printRecipeList2)
             {
                 RecipeNameOut.Text += no.ToString() + ") " + recipe.RecipeName + Environment.NewLine;
                 no++;
             }
         }
 
-
-        private void nameSubmit_Click(object sender, RoutedEventArgs e)
+        private void scaleHalf_Click(object sender, RoutedEventArgs e)
         {
-            string recipeName = RecipeNameTXT.Text;
-            RecipeClass recipeOBJ = printRecipeList.Find(recipe => recipe.RecipeName == recipeName);
-            if (recipeOBJ == null)
-            {
-                MessageBox.Show("Recipe not found");
-                return;
-            }
 
-            RecipeOut.Text = recipeOBJ.PrintRecipe();
+        }
+
+        private void scaleDouble_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void scaleTriple_Click(object sender, RoutedEventArgs e)
+        {
 
         }
 

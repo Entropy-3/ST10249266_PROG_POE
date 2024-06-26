@@ -75,6 +75,12 @@ namespace WpfApp2
             allRecipesWindow allRecipesWindow = new allRecipesWindow(recipeList);
             allRecipesWindow.ShowDialog();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            scaleRecipeWindow scaleRecipeWindow = new scaleRecipeWindow(recipeList);
+            scaleRecipeWindow.ShowDialog();
+        }
     }
 }
 //-------------------------------------------------------------EOF-------------------------------------------------------------------------------------\\

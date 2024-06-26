@@ -64,6 +64,9 @@
     <Compile Include="Windows\createRecipeWindow.xaml.cs">
       <DependentUpon>createRecipeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\scaleRecipeWindow.xaml.cs">
+      <DependentUpon>scaleRecipeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\viewRecipeWindow.xaml.cs">
       <DependentUpon>viewRecipeWindow.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\createRecipeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\scaleRecipeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
