@@ -63,7 +63,7 @@ namespace ST10249266_PROG_POE.Classes
                     }
                     break;
 
-                //-------------------------------------------------
+                
                 case "cup":
                     if (ingredientQuantity > 1)
                     {

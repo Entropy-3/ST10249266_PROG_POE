@@ -46,7 +46,6 @@
     <Compile Include="Classes\Ingredients.cs" />
     <Compile Include="Classes\RecipeClass.cs" />
     <Compile Include="Classes\UnitConverter.cs" />
-    <Compile Include="Classes\WorkerClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
